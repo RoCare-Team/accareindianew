@@ -47,7 +47,7 @@ function Privacy() {
     console.log(admin);
 
     return (
-       <City />
+       <City servicedata={admin}/>
     )
 }
 
