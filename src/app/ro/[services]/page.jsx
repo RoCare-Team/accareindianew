@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
 import { useSearchParams, usePathname } from 'next/navigation'; // ✅ Import usePathname here
+import City from "@/app/components/pages/city/City";
 
 function Privacy() {
     const [admin , setAdmin] = useState([]);
@@ -11,15 +12,15 @@ function Privacy() {
 
     const searchParams = useSearchParams();
     const pathname = usePathname(); // ✅ Now usePathname will work
-    const route = pathname.split('/')[1] || ''; 
+    const route = pathname.split('/')[2] || ''; 
 
-    // console.log("get url: " + route);
+    console.log("get url: " + route);
 
     useEffect(() => {
         const fetchSubServices = async () => {
             try {
-                const leadTypeCollection = collection(db, "page_tb");
-                const q = query(leadTypeCollection, where('page_url', '==', route));
+                const leadTypeCollection = collection(db, "landing_page");
+                const q = query(leadTypeCollection, where("page_url", "==", route));
                 const snapshot = await getDocs(q);
 
                 console.log("Firestore snapshot size:", snapshot.size);
@@ -46,16 +47,7 @@ function Privacy() {
     console.log(admin);
 
     return (
-        <div className='common-spacing bg-white'>
-            <div className="termsSection">
-                <h1 className="termsTitle"><b>Mr Service Expert - Official Privacy Policy</b></h1>
-
-                <p>
-                    At Mr Service Expert, we are committed to protecting the privacy of our clients...
-                    {/* (rest of your privacy policy text) */}
-                </p>
-            </div>
-        </div>
+       <City />
     )
 }
 

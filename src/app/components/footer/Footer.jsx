@@ -10,17 +10,6 @@ const Footer = () => {
 
 
 
-        {/* Useful Links */}
-        <div className="hidden">
-          <h3 className="text-lg font-semibold ">Useful Links</h3>
-          <ul className="space-y-2 p-0  flex items-center gap-4 mb-0 flex-wrap ">
-            <li className="text-xl hover:text-purple-400 transition mb-0"><strong>Services</strong></li>
-            <li className="mb-0"><a href="#" className="mb-0 hover:text-yellow-400 transition">Kent Service</a></li>
-            <li className="mb-0"><a href="#" className=" mb-0 hover:text-yellow-400 transition">Pureit Service</a></li>
-            <li className="mb-0"><a href="#" className="mb-0 hover:text-yellow-400 transition">Livpure Service</a></li>
-            <li className="mb-0"><a href="#" className="mb-0 hover:text-yellow-400 transition">Water Purifier Service</a></li>
-          </ul>
-        </div>
 
 
 
