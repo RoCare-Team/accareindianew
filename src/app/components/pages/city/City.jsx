@@ -9,24 +9,61 @@ import ServiceSection from "../../servicesSection/servicesSection";
 import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
+import { useSearchParams, usePathname } from 'next/navigation'
 
-
-const City = ({ city, servicedata }) => {
-  const [allPages, setAllPages] = useState([]);
+const City = () => {
+     const [admin , setAdmin] = useState([]);
+    const [error, setError] = useState(null);
+    const [allPages, setAllPages] = useState([]);
     const [popularCities, setPopularCities] = useState([]);
     const [brandwisePages, setBrandwisePages] = useState([]);
     const [pageDetails, setPageDetails] = useState({});
+    const searchParams = useSearchParams();
+    const pathname = usePathname(); 
+    const route = pathname.split('/')[2] || ''; 
+
+    // console.log("get url: " + route);
+
+    useEffect(() => {
+        const fetchSubServices = async () => {
+            try {
+                const leadTypeCollection = collection(db, "landing_page");
+                const q = query(leadTypeCollection, where("page_url", "==", route));
+                const snapshot = await getDocs(q);
+
+                console.log("Firestore snapshot size:", snapshot.size);
+
+                const subServicesData = snapshot.docs.map((doc) => {
+                    const data = doc.data();
+                    console.log("Document data:", data);
+                    return data;
+                });
+
+                setAdmin(subServicesData);
+            } catch (err) {
+                console.error("Error fetching sub-services:", err);
+                setError(err.message);
+                setAdmin([]);
+            } finally {
+                // Optional cleanup
+            }
+        };
+
+        fetchSubServices();
+    }, []);
+
     // console.log("test" + JSON.stringify(cityData));
+const servicedata=admin;
 const pageDetail = servicedata?.[0] || {};
 
 
 const { brand = '', location = '', service_type = '', tier = '', category = '', show_num_flag = '',state= '',page_url='' } = pageDetail;
-
+const servicename="ro-water-purifier";
     useEffect(() => {
         const fetchData = async () => {
             try {
               
-                console.log("brand" + location);
+                
                     // Fetch 1: All related services (like first PHP block)
                     const allPagesQuery = query(
                         collection(db, 'landing_page'),
@@ -89,7 +126,7 @@ const { brand = '', location = '', service_type = '', tier = '', category = '', 
                                
                                
                             </div>
-                            <Tabs cat={city} />
+                            <Tabs/>
                         </div>
                     </div>
                     <div className="lg:w-3/4 w-full ">
@@ -187,22 +224,7 @@ const { brand = '', location = '', service_type = '', tier = '', category = '', 
                     </div>
                 </div>
             )}
-                {/* <div className="bg-white common-spacing">
-        <h3>Popular Brand in {pagedata.city_name}</h3>
-        <div className="brandsServices flex items-center flex-wrap gap-2.5 ">
-          {pagedata.brands?.map((brand) => (
-            <div className='brandsServices ' key={brand.id}>
-              <a href={`${brand.brand_url}/${cat}`} title={`${brand.brand_url} ${cat} services`}>
-                <li className='brand-btn-style'>
-                  {brand.brand_name}
-                  <span></span>
-                </li>
-              </a>
-            </div>
-          ))}
-
-        </div>
-      </div> */}
+              
             
 
             </div>

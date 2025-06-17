@@ -73,7 +73,7 @@ const menuData = [
     },
     {
         label: 'RO Service',
-        href: '/ro-water-purifier',
+        href: '/ro/ro-water-purifier-service    ',
     },
     {
         label: 'AC Service',

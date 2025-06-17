@@ -1,54 +1,42 @@
-'use client';
-
-import { useState, useEffect } from "react";
+import City from "@/app/components/pages/city/City";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
-import { useSearchParams, usePathname } from 'next/navigation'; // ✅ Import usePathname here
-import City from "@/app/components/pages/city/City";
 
-function Privacy() {
-    const [admin , setAdmin] = useState([]);
-    const [error, setError] = useState(null);
+export async function generateMetadata({ params }) {
+    const city  = params.services; // gets 'ro-water-purifier-service-channagiri'
+   const canonicalPath = `/ro/${city}`;
+    console.log("Server Slug from URL:", city); // ✅ Now will print correctly
 
-    const searchParams = useSearchParams();
-    const pathname = usePathname(); // ✅ Now usePathname will work
-    const route = pathname.split('/')[2] || ''; 
+    // // Example Firebase query (optional):
+    const q = query(
+        collection(db, "landing_page"),
+        where("page_url", "==", city)
+    );
 
-    console.log("get url: " + route);
+    const querySnapshot = await getDocs(q);
 
-    useEffect(() => {
-        const fetchSubServices = async () => {
-            try {
-                const leadTypeCollection = collection(db, "landing_page");
-                const q = query(leadTypeCollection, where("page_url", "==", route));
-                const snapshot = await getDocs(q);
-
-                console.log("Firestore snapshot size:", snapshot.size);
-
-                const subServicesData = snapshot.docs.map((doc) => {
-                    const data = doc.data();
-                    console.log("Document data:", data);
-                    return data;
-                });
-
-                setAdmin(subServicesData);
-            } catch (err) {
-                console.error("Error fetching sub-services:", err);
-                setError(err.message);
-                setAdmin([]);
-            } finally {
-                // Optional cleanup
-            }
+    if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        return {
+            title: data.page_title || "Default Title",
+            description: data.page_description || "Default Description",
+            keywords: data.page_keywords || "Default Description",
+            alternates: {
+      canonical: canonicalPath,
+    },
         };
+    }
 
-        fetchSubServices();
-    }, []);
-
-    console.log(admin);
-
-    return (
-       <City servicedata={admin}/>
-    )
+    return {
+        title: "Default Title",
+        description: "Default Description",
+    };
 }
 
-export default Privacy;
+export default function Page({ params }) {
+    const { city } = params;
+
+    return (
+        <City city={city} />  // pass the city to City.jsx
+    );
+}
