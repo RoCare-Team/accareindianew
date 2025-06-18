@@ -1,82 +1,11 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import Cart from '../components/cart/Cart';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
-const acBrands = [
-    { category: "LG Air Conditioner" },
-    { category: "Lloyd Air Conditioner" },
-    { category: "Voltas Air Conditioner" },
-    { category: "Samsung Air Conditioner" },
-    { category: "Hitachi Air Conditioner" },
-    { category: "Carrier Air Conditioner" },
-    { category: "Daikin Air Conditioner" },
-    { category: "O General Air Conditioner" },
-    { category: "Blue Star Air Conditioner" },
-    { category: "Whirlpool Air Conditioner" },
-    { category: "Panasonic Air Conditioner" },
-    { category: "Onida Air Conditioner" },
-    { category: "Haier Air Conditioner" },
-    { category: "Godrej Air Conditioner" },
-    { category: "Duct Air Conditioning" },
-    { category: "Portable Air Conditioning" },
-    { category: "Central Air Conditioner" },
-    { category: "Smart Air Conditioner" }
-];
 
-const products = [
-    {
-        productId: 1,
-        productName: "Arctic Breeze 12000 BTU Window Air Conditioner",
-        productInfo: "Powerful cooling solution designed for medium-sized rooms up to 550 sq. ft. It offers three cooling modes (cool, dry, fan) and three fan speeds (low, medium, high), allowing you to customize your comfort.",
-        productPrice: "800",
-        productType: "window",
-    },
-    {
-        productId: 2,
-        productName: "CoolMaster 1.5 Ton Split AC",
-        productInfo: "High-efficiency split AC with inverter technology for energy savings and silent operation. Suitable for rooms up to 180 sq. ft.",
-        productPrice: "34000",
-        productType: "split",
-    },
-    {
-        productId: 3,
-        productName: "BreezeFlow Window AC 1 Ton",
-        productInfo: "Compact and budget-friendly window AC ideal for small bedrooms or offices. Includes auto restart and anti-bacterial filter.",
-        productPrice: "22000",
-        productType: "window",
-    },
-    {
-        productId: 4,
-        productName: "GlacierPro 2 Ton Split Inverter AC",
-        productInfo: "Heavy-duty AC built for large rooms or halls. Features dual inverter compressor and 4-way swing for uniform cooling.",
-        productPrice: "48000",
-        productType: "split",
-    },
-    {
-        productId: 5,
-        productName: "AirSense 1.2 Ton Window AC",
-        productInfo: "Reliable window AC with copper condenser and turbo cooling mode for quick relief from summer heat.",
-        productPrice: "26000",
-        productType: "window",
-    },
-    {
-        productId: 6,
-        productName: "ChillMate 1.5 Ton 3-Star Split AC",
-        productInfo: "Efficient and durable split AC with 3-star rating for optimized power usage. Features include PM2.5 filter and auto clean.",
-        productPrice: "31000",
-        productType: "split",
-    },
-    {
-        productId: 7,
-        productName: "FrostWind Window AC 1.5 Ton",
-        productInfo: "Robust and economical window air conditioner with advanced airflow technology and low-noise operation.",
-        productPrice: "27000",
-        productType: "window",
-    },
-];
 
 function page() {
 
