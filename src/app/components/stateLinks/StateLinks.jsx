@@ -11,14 +11,14 @@ function StateLinks() {
 
     return (
         <div className="ro-service-cities">
-            <h2>RO Service in Popular Cities</h2>
+            <h2>ACService in Popular Cities</h2>
             <div className="state-links flex flex-wrap gap-2.5 ">
                 {State.map((city) => (
                     <Link
                         key={city}
-                        href={`/${city.toLowerCase().replace(/\s+/g, "-")}/ro-water-purifier`}
+                        href={`/${city.toLowerCase().replace(/\s+/g, "-")}/ac`}
                         className="state-link  "
-                       title={`${city.toLowerCase().replace(/\s+/g, " ")} ro water purifier ` }
+                       title={`${city.toLowerCase().replace(/\s+/g, " ")} Air conditioner services ` }
                     >
                         {city}
                     </Link>

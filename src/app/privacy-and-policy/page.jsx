@@ -19,7 +19,7 @@ function Privacy() {
         const fetchSubServices = async () => {
             try {
                 const leadTypeCollection = collection(db, "page_tb");
-                const q = query(leadTypeCollection, where('page_url', '==', route));
+                const q = query(leadTypeCollection, where('page_url', '==', 'ac-service'));
                 const snapshot = await getDocs(q);
 
                 console.log("Firestore snapshot size:", snapshot.size);

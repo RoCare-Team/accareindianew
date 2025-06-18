@@ -73,11 +73,11 @@ const menuData = [
     },
     {
         label: 'RO Service',
-        href: '/ro-water-purifier',
+        href: '/ro/ro-water-purifier-service',
     },
     {
         label: 'AC Service',
-        href: '/ac',
+        href: '/ac-service',
         children: [
             {
                 heading: 'Top AC Services',
@@ -264,8 +264,8 @@ function MegaMenu() {
                         className="px-4 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
                         onClick={handleOrdersClick}
                     >
-                        <FontAwesomeIcon icon={faCartShopping} className="mr-3 text-gray-600 w-4 h-4" />
-                        <span className="text-sm text-gray-700">Orders</span>
+                        <FontAwesomeIcon icon={faBook} className="mr-3 text-gray-600 w-4 h-4" />
+                        <span className="text-sm text-gray-700">Bookings</span>
                     </div>
                     
                     <div
@@ -341,6 +341,14 @@ function MegaMenu() {
                             )}
                         </div>
 
+                        <div className="cartLink relative bg-blue-50 rounded-full p-2 hover:bg-blue-200 ">
+                                       <a href="/checkout" title="Checkout">
+                                         <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: "24px", cursor: "pointer"  }}  className='text-blue-600' />
+                                       </a>
+                                       {/* {cartCount > 0 ? (<span className='cartCountStyle absolute '>{cartCount}</span>): (<></>)} */}
+                                     </div>
+
+
                         {/* Phone Number */}
                         <div className="flex items-center bg-blue-600 rounded-xl gap-1 px-0.5">
                             <div className="w-10 h-10 flex items-center justify-center">
@@ -359,6 +367,8 @@ function MegaMenu() {
                                 +91-9311587715
                             </a>
                         </div>
+
+                          
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -408,6 +418,9 @@ function MegaMenu() {
                                         <span className="font-medium">+91-9311587715</span>
                                     </a>
                                 </div>
+
+                        
+
                             </div>
                         )}
                     </div>

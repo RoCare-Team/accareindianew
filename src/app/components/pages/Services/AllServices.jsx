@@ -17,7 +17,7 @@ const serviceL = [
 
 ];
 
-const AllServices = (cater) => {
+const AllServices = ({cater,red}) => {
   const { city, brand, cat } = useParams();
   const [serviceList, setserviceList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ const AllServices = (cater) => {
 
   };
 
-  const cate = cater.cater;
+  const cate = cater;
 
   useEffect(() => {
     let lead_type = null;
@@ -39,9 +39,9 @@ const AllServices = (cater) => {
 
     if (cat === "washing-machine-repair" || city === "washing-machine-repair" || cate === "washing-machine-repair") {
       lead_type = 4;
-    } else if (cat === "ac" || city === "ac" || cate === "ac") {
+    } else if (cat === "ac" || city === "ac" || cate === "ac" || red === "ac") {
       lead_type = 2;
-    } else if (cat === "ro-water-purifier" || city === "ro-water-purifier" || cate === "ro-water-purifier") {
+    } else if (cat === "ro-water-purifier" || city === "ro-water-purifier" || cate === "ro-water-purifier" || red=== "ro-water-purifier") {
       lead_type = 1;
     } else if (cat === "microwav-repair" || city === "microwav-repair" || cate === "microwav-repair") {
       lead_type = 9;
@@ -51,7 +51,7 @@ const AllServices = (cater) => {
       lead_type = 5;
     } else if (cat === "kitchen-chimney-repair" || city === "kitchen-chimney-repair" || cate === "kitchen-chimney-repair") {
       lead_type = 10;
-    } else if (cat === "refrigerator-repair" || city === "refrigerator-repair" || cate === "refrigerator-repair") {
+    } else if (cat === "refrigerator-repair" || city === "refrigerator-repair" || cate === "refrigerator-repair" || red==="refrigerator-repair" ) {
       lead_type = 6;
     } else if (cat === "led-tv-repair" || city === "led-tv-repair" || cate === "led-tv-repair") {
       lead_type = 8;
@@ -124,7 +124,7 @@ const AllServices = (cater) => {
       }, [])
 
 
-  }, [cat])
+  }, [cat,red])
 
   //   const handleTabService = serviceList;
   // const names = handleTabService.map(service => 

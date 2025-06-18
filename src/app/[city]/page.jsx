@@ -1,69 +1,54 @@
-import CityPage from "@/app/components/pages/city/City";
-import { notFound } from "next/navigation";
+'use client';
 
-export const generateMetadata = async ({ params }) => {
-  const { city } = await params;
+import { useState, useEffect } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/app/firebaseconfig";
+import { useSearchParams, usePathname } from 'next/navigation'; // ✅ Import usePathname here
+import City from "../components/pages/city/City";
 
-  try {
-    const response = await fetch('https://mannubhai.in/web_api/get_city_page_data.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ city }),
-      cache: 'no-store',
-    });
+function Privacy() {
+    const [admin , setAdmin] = useState([]);
+    const [error, setError] = useState(null);
 
-    const data = await response.json();
-    // console.log(JSON.stringify(data)+'addsdsd');
-    // const dipper=JSON.stringify(data);
+    const searchParams = useSearchParams();
+    const pathname = usePathname(); // ✅ Now usePathname will work
+    const route = pathname.split('/')[1] || ''; 
 
-    // console.log(json.parse(dipper)+'fdsfasdfasdg');
-    
-    
-    const cityDetail = data?.city_detail;
-    const categorydetail=data?.categorydetail;
-    // console.log(JSON.stringify(cityDetail)+'yahan tu mare jayege');
-    
+    // console.log("get url: " + route);
 
-    return {
-    
-      title: cityDetail?.meta_title || categorydetail?.meta_title || `Services in ${city}`,
-      description: cityDetail?.meta_description || categorydetail?.meta_description || `Find services in ${city}`,
-      keywords: cityDetail?.meta_keywords ||categorydetail?.meta_keywords || `services, ${city}`,
-      robots: 'index, follow',
-      alternates: {
-        canonical: `https://www.mrserviceexpert.com/${city}`,
-      },
-    };
-  } catch (error) {
-    console.error("generateMetadata error:", error);
-    return {
-      title: `Services in ${city}`,
-      description: `Find services in ${city}`,
-    };
-  }
-};
+    useEffect(() => {
+        const fetchSubServices = async () => {
+            try {
+                const leadTypeCollection = collection(db, "page_tb");
+                const q = query(leadTypeCollection, where('page_url', '==',route));
+                const snapshot = await getDocs(q);
 
-export default async function Page({ params }) {
-  const { city } = await params;
+                console.log("Firestore snapshot size:", snapshot.size);
 
-  try {
-    const response = await fetch("https://mannubhai.in/web_api/get_city_page_data.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ city }),
-      cache: "no-store",
-    });
+                const subServicesData = snapshot.docs.map((doc) => {
+                    const data = doc.data();
+                    console.log("Document data:", data);
+                    return data;
+                });
 
-    const data = await response.json();
+                setAdmin(subServicesData);
+            } catch (err) {
+                console.error("Error fetching sub-services:", err);
+                setError(err.message);
+                setAdmin([]);
+            } finally {
+                // Optional cleanup
+            }
+        };
 
-    if (data.error) {
-      return notFound();
-    }
-// console.log(data);
+        fetchSubServices();
+    }, []);
 
-    return <CityPage cityData ={data} />;
-  } catch (error) {
-    console.error("Error fetching city page:", error);
-    return notFound();
-  }
+    console.log(admin);
+
+    return (
+       <City servicedata={admin}/>
+    )
 }
+
+export default Privacy;

@@ -82,7 +82,7 @@ const Footer = () => {
       </div>
       {/* Footer Bottom */}
       <div className="mt-10 text-center text-sm border-t border-gray-500 pt-6">
-        © {new Date().getFullYear()} Mr Service Expert |
+        © {new Date().getFullYear()} AC Care India |
         <a href="/" target='_blank' rel="noopener noreferrer" title="home" className="hover:text-yellow-400 transition mx-2">Home</a> |
         <a href="/terms-and-conditions" target='_blank' title="terms-and-conditions" rel="noopener noreferrer" className="hover:text-yellow-400 transition mx-2">Terms</a> |
         <a href="/privacy-and-policy" target='_blank' title="privacy-and-policy" rel="noopener noreferrer" className="hover:text-yellow-400 transition mx-2">Privacy Policy</a> |
