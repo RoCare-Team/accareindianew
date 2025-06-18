@@ -1,69 +1,44 @@
-import CityPage from "@/app/components/pages/city/City";
-import { notFound } from "next/navigation";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/app/firebaseconfig";
+import City from "../components/pages/city/City";
 
-export const generateMetadata = async ({ params }) => {
-  const { city } = await params;
-
-  try {
-    const response = await fetch('https://mannubhai.in/web_api/get_city_page_data.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ city }),
-      cache: 'no-store',
-    });
-
-    const data = await response.json();
-    // console.log(JSON.stringify(data)+'addsdsd');
-    // const dipper=JSON.stringify(data);
-
-    // console.log(json.parse(dipper)+'fdsfasdfasdg');
+   export async function generateMetadata({ params }) {
+    const city  = params.city; 
+    console.log(city);
     
-    
-    const cityDetail = data?.city_detail;
-    const categorydetail=data?.categorydetail;
-    // console.log(JSON.stringify(cityDetail)+'yahan tu mare jayege');
-    
+   const canonicalPath = `/${city}`;
+    console.log("Server Slug from URL:", city); // ✅ Now will print correctly
 
-    return {
-    
-      title: cityDetail?.meta_title || categorydetail?.meta_title || `Services in ${city}`,
-      description: cityDetail?.meta_description || categorydetail?.meta_description || `Find services in ${city}`,
-      keywords: cityDetail?.meta_keywords ||categorydetail?.meta_keywords || `services, ${city}`,
-      robots: 'index, follow',
-      alternates: {
-        canonical: `https://www.mrserviceexpert.com/${city}`,
-      },
-    };
-  } catch (error) {
-    console.error("generateMetadata error:", error);
-    return {
-      title: `Services in ${city}`,
-      description: `Find services in ${city}`,
-    };
-  }
-};
+    // // Example Firebase query (optional):
+    const q = query(
+        collection(db, "page_tb"),
+        where("page_url", "==", city)
+    );
 
-export default async function Page({ params }) {
-  const { city } = await params;
+    const querySnapshot = await getDocs(q);
 
-  try {
-    const response = await fetch("https://mannubhai.in/web_api/get_city_page_data.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ city }),
-      cache: "no-store",
-    });
-
-    const data = await response.json();
-
-    if (data.error) {
-      return notFound();
+    if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        return {
+            title: data.page_title || "Default Title",
+            description: data.page_description || "Default Description",
+            keywords: data.page_keywords || "Default Description",
+            alternates: {
+      canonical: canonicalPath,
+    },
+        };
     }
-// console.log(data);
 
-    return <CityPage cityData ={data} />;
-  } catch (error) {
-    console.error("Error fetching city page:", error);
-    return notFound();
-  }
+    return {
+        title: "Default Title",
+        description: "Default Description",
+    };
+}
+
+export default function Page({ params }) {
+    const { city } = params;
+
+    return (
+        <City city={city} />  // pass the city to City.jsx
+    );
 }

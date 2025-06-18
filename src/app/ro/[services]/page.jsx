@@ -1,8 +1,14 @@
-import City from "@/app/components/pages/city/City";
+
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
+import City from "@/app/components/pages/city/City";
 
-export async function generateMetadata({ params }) {
+
+
+
+
+
+    export async function generateMetadata({ params }) {
     const city  = params.services; // gets 'ro-water-purifier-service-channagiri'
    const canonicalPath = `/ro/${city}`;
     console.log("Server Slug from URL:", city); // ✅ Now will print correctly

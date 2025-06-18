@@ -73,10 +73,10 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+/* a:hover {
   color: #7533ea;
   text-decoration: underline;
-}
+} */
 
 
 
@@ -279,7 +279,8 @@ a:hover {
 
 /* booking details  */
 .bookingContainer {
-  border: 1px solid gainsboro;
+  border: 1px solid rgb(163, 173, 243);
+  background-color: #b7d3f6;
   padding: 12px;
   border-radius: 12px;
 }
@@ -302,6 +303,8 @@ a:hover {
 
 .bookingSlots {
   border-bottom: 1px solid gainsboro;
+  background-color: white;
+  border-radius: 12px;
   padding: 12px;
   /* row-gap: 2.5px; */
 }
@@ -321,18 +324,18 @@ a:hover {
 }
 
 .bookingBtn {
-  border: 1px solid blueviolet;
+  border: 1px solid rgb(157, 157, 242);
   border-radius: 8px;
   padding: 2px 4px;
 }
 
 .bookingBtn:hover {
-  background-color: rgb(117, 51, 234);
+  background-color: rgb(54, 141, 188);
   color: white;
 }
 
 .bookingBtn:focus {
-  background-color: rgb(117, 51, 234);
+  background-color: rgb(51, 60, 234);
   color: white;
 }
 
@@ -970,11 +973,13 @@ hr {
 
 .service-card2 {
   display: flex;
+  /* flex-direction: column; */
   gap: 20px;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid rgb(197, 180, 245);
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 /* .service-card button {
@@ -1465,7 +1470,7 @@ hr {
   display: flex;
   border-radius: 12px;
   gap: 30px;
-  background: linear-gradient(90deg, #ffffff1a -38.76%, #fffc 174.96%);
+  background: #e8ebf7;
   justify-content: center;
   /* align-items: center; */
 }

@@ -16,9 +16,9 @@ function Profile() {
     const router=useRouter();
 
     useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem("user")); 
-        if (!user || !user.token) { 
-            router.push('/'); 
+        const userVerified = JSON.parse(localStorage.getItem("userPhone"));
+        if (!userVerified) {
+            router.push('/');
         }
     },[])
 
@@ -76,11 +76,11 @@ function Profile() {
             <div className='flex items-start justify-start text-left gap-0.5 mb-2.5 col-4'>
                 <Link href={'/'} className='mb-0 text-black'><span className='mb-0 text-black'>Home</span></Link>
                 <span className='mb-0 text-black'> {'>'}</span>
-                <span className='mb-0 text-purple-600'>Profile</span>
+                <span className='mb-0 text-blue-600'>Profile</span>
             </div>
 
             <div className="bg-white flex flex-col w-full max-w-lg shadow-md rounded-md">
-                <div className='flex items-center justify-between text-white bg-purple-600 p-4 booking-container '>
+                <div className='flex items-center justify-between text-white bg-blue-600 p-4 booking-container '>
                     <h4>My Account</h4>
 
 

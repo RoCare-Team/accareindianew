@@ -7,10 +7,6 @@ import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
-
-
-
-
 const home = () => {
   const locationRef = useRef(null);
   const serviceRef = useRef(null);

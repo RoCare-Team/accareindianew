@@ -9,20 +9,40 @@ import { toast, ToastContainer } from "react-toastify";
 // import {  useParams } from "react-router-dom";
 import { useParams } from "next/navigation";
 
-const FakeList = ({ cate, addedServices = [], state, handleCartLoading }) => {
+const FakeList = ({ cate,category ,addedServices = [], state, handleCartLoading }) => {
   //   const location = useLocation();
   const [serviceListCart, setServiceListCart] = useState([]);
 
   const [clickedValues, setClickedValues] = useState([]);
-
+const [catservice,setCatService]=useState(null);
   // const handleButtonClick = (value) => {
   //   setClickedValues((prevValues) => [...prevValues, value]);
   // };
 
-//   const { city, brand, cat } = useParams();
+  const rip=category;
+
+  const { city, brand, cat } = useParams();
   // const [city, brand, cat] = params.params || [];
 
-  const cat="ro-water-purifier";
+  // const cat=useParams();
+
+  useEffect(() => {
+          if (rip === "ro-water-purifier-service" || rip ==="ac-service" ) {
+              const catservice = rip.replace("-service", "");
+              setCatService(catservice);
+          } 
+           
+         
+          
+          else {
+              const catservice = rip;
+              setCatService(catservice);
+          }
+      }, [rip]);
+
+  console.log(catservice+"yeh url se pta chalgye kya services chalgyi aur lead kausne aayege");
+
+  // const cat="ro-water-purifier";
 //   const city="ro-water-purifier";
 //   const cate="ro-water-purifier";
 
@@ -72,30 +92,52 @@ const FakeList = ({ cate, addedServices = [], state, handleCartLoading }) => {
       localStorage.setItem('cartItems', JSON.stringify(addedServices));
     }
   }, [addedServices]);
-  useEffect(() => {
-    let lead_type = 1;
+useEffect(() => {
+  let lead_type = null;
 
-    const cid = localStorage.getItem('customer_id');
+  // Use catservice (processed URL) instead of raw parameters
+  if (catservice === "washing-machine-repair" || cat === "washing-machine-repair" || city === "washing-machine-repair" || cate === "washing-machine-repair") {
+    lead_type = 4;
+  } else if (catservice === "ac" || cat === "ac" || city === "ac" || cate === "ac") {
+    lead_type = 2;
+  } else if (catservice === "ro-water-purifier" || cat === "ro-water-purifier" || city === "ro-water-purifier" || cate === "ro-water-purifier") {
+    lead_type = 1;
+  } else if (catservice === "microwav-repair" || cat === "microwav-repair" || city === "microwav-repair" || cate === "microwav-repair") {
+    lead_type = 9;
+  } else if (catservice === "vacuum-cleaner-repair" || cat === "vacuum-cleaner-repair" || city === "vacuum-cleaner-repair" || cate === "vacuum-cleaner-repair") {
+    lead_type = 11;
+  } else if (catservice === "geyser-repair" || cat === "geyser-repair" || city === "geyser-repair" || cate === "geyser-repair") {
+    lead_type = 5;
+  } else if (catservice === "kitchen-chimney-repair" || cat === "kitchen-chimney-repair" || city === "kitchen-chimney-repair" || cate === "kitchen-chimney-repair") {
+    lead_type = 10;
+  } else if (catservice === "refrigerator-repair" || cat === "refrigerator-repair" || city === "refrigerator-repair" || cate === "refrigerator-repair") {
+    lead_type = 6;
+  }
 
+  const cid = localStorage.getItem('customer_id');
+
+  // Only make API call if lead_type is determined
+  if (lead_type !== null) {
     fetch('https://waterpurifierservicecenter.in/customer/ro_customer/all_services.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ cid: cid, lead_type: lead_type })
-
     })
-      .then(res => res.json())
-      .then(data => {
-        setServiceData(data.service_details);
-        setCatergoryTitle(data.Title);
-        setBrandName(cat);
-
-      }, [])
-
-
-
-  }, [cat])
+    .then(res => res.json())
+    .then(data => {
+      setServiceData(data.service_details);
+      setCatergoryTitle(data.Title);
+      setBrandName(cat);
+    })
+    .catch(error => {
+      console.error('Error fetching services:', error);
+    });
+  } else {
+    console.log('No matching lead_type found for:', { catservice, cat, city, cate });
+  }
+}, [cat, catservice]) // Add catservice as dependency
 
 const limitListItems = (html, max = 4) => {
   // Create a DOM parser
