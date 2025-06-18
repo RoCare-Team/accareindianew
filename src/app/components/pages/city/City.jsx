@@ -10,9 +10,12 @@ import HomeCareService from "../../servicesSection/homeCareService";
 import Cart from "../../cart/Cart";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
+import { usePathname, useSearchParams } from "next/navigation";
 
 
-const City = ({ city, servicedata }) => {
+const City = ({ city, }) => {
+    const [admin, setAdmin] = useState([]);
+    const [error, setError] = useState(null);
     const [addedServices, setAddedServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
     const [cartChanged, setCartChanged] = useState(false);
@@ -24,36 +27,112 @@ const City = ({ city, servicedata }) => {
     const [showAll, setShowAll] = useState(false)
     const [indiaShow, setIndiaShow] = useState(false);
     const [openItem, setOpenItem] = useState(0);
-    const [catservice,setCatService]=useState([]);
+    const [catservice, setCatService] = useState([]);
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    // const route = pathname.split('/')[2] || '';
+    const segments = pathname.split('/').filter(Boolean); // removes empty segments
+const route = segments[segments.length - 1] || '';
+
     // console.log("test" + JSON.stringify(cityData));
     const indiaPages = indiaShow ? brandwisePages : brandwisePages.slice(0, 13);
 
     const visiblePages = showAll ? popularCities : popularCities.slice(0, 14);
+
+    useEffect(() => {
+        const fetchSubServices = async () => {
+            try {
+                const leadTypeCollection = collection(db, "landing_page");
+                const q = query(leadTypeCollection, where("page_url", "==", route));
+                const snapshot = await getDocs(q);
+
+                console.log("Firestore snapshot size:", snapshot.size);
+
+                const subServicesData = snapshot.docs.map((doc) => {
+                    const data = doc.data();
+                    console.log("Document data:", data);
+                    return data;
+                });
+
+                if (city == "ac-service" || city === "refrigerator-repair-service") {
+
+                    const leadTypeCollection = collection(db, "page_tb");
+                    const q = query(leadTypeCollection, where("page_url", "==", city));
+                    const snapshot = await getDocs(q);
+
+                    console.log("Firestore snapshot size:", snapshot.size);
+
+                    const subServicesData = snapshot.docs.map((doc) => {
+                        const data = doc.data();
+                        console.log("Document data:", data);
+                        return data;
+                    });
+                }
+                setAdmin(subServicesData);
+            } catch (err) {
+                console.error("Error fetching sub-services:", err);
+                setError(err.message);
+                setAdmin([]);
+            } finally {
+                // Optional cleanup
+            }
+        };
+
+        fetchSubServices();
+    }, []);
+
+
+    console.log(route + "current url portion to take");
+
+
+    // console.log("test" + JSON.stringify(cityData));
+    const servicedata = admin;
     const pageDetail = servicedata?.[0] || {};
 
     const { brand = '', location = '', service_type = '', tier = '', category = '', show_num_flag = '', state = '', page_url = '', page_faq_que_one = '', page_faq_ans_five = '', page_faq_ans_four = '', page_faq_ans_one = '', page_faq_ans_three = '', page_faq_ans_two = '', page_faq_que_five = '', page_faq_que_four = '', page_faq_que_two = '', page_faq_que_three = '' } = pageDetail;
-  
-  
-    useEffect(() => {
-        if (page_url === "ro-water-purifier-service" || page_url ==="ac-service" ) {
-            const catservice = page_url.replace("-service", "");
-            setCatService(catservice);
-        } 
-         
-       
-        
-        else {
-            const catservice = page_url;
-            setCatService(catservice);
-        }
-    }, [page_url,catservice]);
-    console.log(catservice)
 
+
+    // useEffect(() => {
+    //     if (page_url === "ro-water-purifier-service" || page_url === "ac-service"|| route === "ro-water-purifier-service" ||  route === "ac-service") {
+
+            
+    //         const catservice = page_url.replace("-service", "") ||  route.replace("-service", "");
+    //         setCatService(catservice);
+    //     }
+
+
+
+    //     else {
+    //         const catservice = page_url;
+    //         setCatService(catservice);
+    //     }
+    // }, [page_url, catservice]);
+
+    useEffect(() => {
+    let catservice = "";
+
+    // Combine page_url and route logic
+    const base = page_url || route;
+
+    // Use regex to match up to "-service" and remove everything after it
+    const match = base.match(/^(.*?)-service/);
+    
+    if (match) {
+        catservice = match[1]; // ro-water-purifier or ac
+    } else {
+        catservice = base;
+    }
+
+    setCatService(catservice);
+}, [page_url, route]);
+
+    console.log(catservice)
+    // const servicename="ro-water-purifier";
     useEffect(() => {
         const fetchData = async () => {
             try {
 
-                console.log("brand" + location);
+
                 // Fetch 1: All related services (like first PHP block)
                 const allPagesQuery = query(
                     collection(db, 'landing_page'),
@@ -64,6 +143,23 @@ const City = ({ city, servicedata }) => {
                 const allPagesSnap = await getDocs(allPagesQuery);
                 const allPagesData = allPagesSnap.docs.map(doc => doc.data());
                 setAllPages(allPagesData);
+
+                if (city == "ac-service" || city === "refrigerator-repair-service") {
+
+                    const allPagesQuery = query(
+                        collection(db, 'page_tb'),
+                        where('brand', '==', brand),
+                        where('location', '==', 'India')
+
+                    );
+                    const allPagesSnap = await getDocs(allPagesQuery);
+                    const allPagesData = allPagesSnap.docs.map(doc => doc.data());
+                    setAllPages(allPagesData);
+
+
+                }
+
+
 
                 // Fetch 2: Popular cities services (like second PHP block)
                 if (location !== "India") {
@@ -158,7 +254,9 @@ const City = ({ city, servicedata }) => {
         }
     }, [selectedServices]);
 
-    
+
+
+
 
     // console.log("test" + JSON.stringify(cityData?.city_detail?.city_content));
     // const cleanContent = he.decode(cityData?.categorydetail?.category_content);
@@ -355,7 +453,7 @@ const City = ({ city, servicedata }) => {
                     </div>
                 </div>
 
-             
+
 
             </div>
             <div className="bg-white p-4">
