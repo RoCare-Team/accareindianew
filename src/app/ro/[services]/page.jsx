@@ -3,11 +3,6 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
 import City from "@/app/components/pages/city/City";
 
-
-
-
-
-
     export async function generateMetadata({ params }) {
     const city  = params.services; // gets 'ro-water-purifier-service-channagiri'
    const canonicalPath = `/ro/${city}`;

@@ -42,13 +42,16 @@ const route = segments[segments.length - 1] || '';
     useEffect(() => {
         const fetchSubServices = async () => {
             try {
+
+                 let subServicesData = [];
+
                 const leadTypeCollection = collection(db, "landing_page");
                 const q = query(leadTypeCollection, where("page_url", "==", route));
                 const snapshot = await getDocs(q);
 
                 console.log("Firestore snapshot size:", snapshot.size);
 
-                const subServicesData = snapshot.docs.map((doc) => {
+                 subServicesData = snapshot.docs.map((doc) => {
                     const data = doc.data();
                     console.log("Document data:", data);
                     return data;
@@ -62,12 +65,18 @@ const route = segments[segments.length - 1] || '';
 
                     console.log("Firestore snapshot size:", snapshot.size);
 
-                    const subServicesData = snapshot.docs.map((doc) => {
+                    const dibsip = snapshot.docs.map((doc) => {
                         const data = doc.data();
                         console.log("Document data:", data);
                         return data;
                     });
+
+                    subServicesData=dibsip;
+                    
                 }
+
+             
+                
                 setAdmin(subServicesData);
             } catch (err) {
                 console.error("Error fetching sub-services:", err);
@@ -82,14 +91,12 @@ const route = segments[segments.length - 1] || '';
     }, []);
 
 
-    console.log(route + "current url portion to take");
-
 
     // console.log("test" + JSON.stringify(cityData));
     const servicedata = admin;
     const pageDetail = servicedata?.[0] || {};
 
-    const { brand = '', location = '', service_type = '', tier = '', category = '', show_num_flag = '', state = '', page_url = '', page_faq_que_one = '', page_faq_ans_five = '', page_faq_ans_four = '', page_faq_ans_one = '', page_faq_ans_three = '', page_faq_ans_two = '', page_faq_que_five = '', page_faq_que_four = '', page_faq_que_two = '', page_faq_que_three = '' } = pageDetail;
+    const { brand = '', location = '', service_type = '',page_description='', tier = '', category = '', show_num_flag = '', state = '', page_url = '', page_faq_que_one = '', page_faq_ans_five = '', page_faq_ans_four = '', page_faq_ans_one = '', page_faq_ans_three = '', page_faq_ans_two = '', page_faq_que_five = '', page_faq_que_four = '', page_faq_que_two = '', page_faq_que_three = '' } = pageDetail;
 
 
     // useEffect(() => {
@@ -312,6 +319,7 @@ const route = segments[segments.length - 1] || '';
                 <div className=" bg-white aboutStyle">
                     <h3 className="catgoreyTitle">ABOUT  </h3>
                     <div dangerouslySetInnerHTML={{ __html: servicedata[0]?.content_text }} className="serviceContentStyle" />
+                  
                 </div>
             </div>
 
