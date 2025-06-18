@@ -136,17 +136,17 @@ console.log(product);
                     <div className='grid grid-cols-3 gap-4'>
                         {product.map((product) => (
                         <a href={`${product.product_url}/${product.id}`}>
-                            <div key={product.productId} className=' group w-80 flex flex-col justify-between gap-4 relative  hover:-translate-y-0.5 hover:shadow-md bg-white rounded-2xl'>
+                            <div key={product.productId} className=' group w-75 flex flex-col justify-between gap-4 relative  hover:-translate-y-0.5 hover:shadow-md bg-white rounded-2xl'>
                                 <img src={`/img/products/${product.product_image}`} alt="product img" className='h-40 rounded-xl bg-blue-200' />
                                 <span className='bg-blue-50 text-xs text-blue-600 rounded-lg py-1 px-2 absolute top-1.5 right-4  opacity-0 group-hover:opacity-100 '>
                                     {/* eye */}
                                     <FontAwesomeIcon icon={faEye} />
                                 </span>
                                 <div className='flex flex-col p-2'>
-                                    <h2 className='mb-2'>{product.product_name}</h2>
+                                    <h2 className='mb-2 text-black'><b>{product.product_name}</b></h2>
                                     {/* <span className='text-gray-400 text-xs mb-2'>{product.productInfo}</span> */}
                                     <div className='flex justify-between'>
-                                        <span className='text-green-400 text-xs mb-2'>Reviews 1.5K</span>
+                                        <span className='text-green-400 text-xs mb-2'>Reviews 1.5K </span>
                                     <span className='text-blue-600 mb-2'> Price: ₹{product.product_price}</span>
                                     </div>
 
