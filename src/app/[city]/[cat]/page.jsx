@@ -39,8 +39,19 @@ console.log(productdetails);
 
 
     return (
-        <div className='px-32 py-4'>
-            <div className='flex flex-row items-center mb-3 gap-2'>
+
+        <div className='px-32 py-4 relative'>
+
+               <div className='absolute inset-0 z-10 flex items-center justify-center bg-black/30 backdrop-blur-sm'>
+             <div className='text-center p-8 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl border border-blue-400'>
+                    <h1 className='text-4xl font-bold text-blue-800 mb-4'>Coming Soon</h1>
+                    <p className='text-blue-600'>We're working hard to bring you this page!</p>
+                </div>
+            </div>
+
+
+          <div>
+              <div className='flex flex-row items-center mb-3 gap-2'>
                 <span className='text-xs text-gray-500'>Home</span><span className='text-gray-400'>{`${'>'}`}</span><span className='text-xs text-gray-500'>spare parts</span> <span className='text-gray-400'>{`${'>'}`}</span> <span className='text-xs text-black font-bold'>{productdetails[0]?.product_name}</span>
             </div>
             {/* product image and description thing*/}
@@ -108,6 +119,7 @@ console.log(productdetails);
 
                 </div>
             </div>
+          </div>
         </div>
     )
 }

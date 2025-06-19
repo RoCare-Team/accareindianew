@@ -236,11 +236,18 @@ const home = () => {
       toast.error('Please choose  a location or  a service.');
       return;
     }
-
+ const serviceMap = {
+    "ro-water-purifier": "ro/ro-water-purifier",
+    "refrigerator-repair": "refrigerator-repair",
+    "ac": "ac-service",
+    // "washing-machine-repair": "washing-machine-repair",
+  };
 
     let path = '';
     if (location) path += `/${encodeURIComponent(location)}`;
-    if (service) path += `/${encodeURIComponent(service)}`;
+    if (service && serviceMap[service]) {
+    path += `/${serviceMap[service]}`;
+  }
 
     console.log(path);
 
@@ -301,7 +308,7 @@ const home = () => {
                   <option value={'ro-water-purifier'}>Ro Water Purifier</option>
                   <option value={'refrigerator-repair'}>Refrigerator</option>
                   <option value={'ac'}>Ac</option>
-                  <option value={'washing-machine-repair'}>Washing Machine</option>
+                  {/* <option value={'washing-machine-repair'}>Washing Machine</option> */}
                 </select>
               </div>
 

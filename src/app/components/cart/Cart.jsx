@@ -240,13 +240,6 @@ const Cart = ({ cartLoaded, cartLoadedToggle }) => {
           </>
         )}
       </div>
-
-      {/* <div className="grid grid-cols-2 gap-1 bg-gradient-to-r from-green-50 to-blue-50 p-2 rounded-xl">
-       <span className="text-gray-400 text-xs">Authenic parts</span>
-       <span className="text-gray-400 text-xs">Expert Technicain</span>
-       <span className="text-gray-400 text-xs">24/7 Customer Service</span>
-       <span className="text-gray-400 text-xs">Best Value</span>
-      </div> */}
     </div>
   );
 };

@@ -13,7 +13,7 @@ import { db } from "@/app/firebaseconfig";
 import { usePathname, useSearchParams } from "next/navigation";
 
 
-const City = ({ city, }) => {
+const SingleService = ({ city, }) => {
     const [admin, setAdmin] = useState([]);
     const [error, setError] = useState(null);
     const [addedServices, setAddedServices] = useState([]);
@@ -57,23 +57,23 @@ const route = segments[segments.length - 1] || '';
                     return data;
                 });
 
-                if (city == "ac-service" || city === "refrigerator-repair-service") {
+                // if (city == "ac-service" || city === "refrigerator-repair-service") {
 
-                    const leadTypeCollection = collection(db, "page_tb");
-                    const q = query(leadTypeCollection, where("page_url", "==", city));
-                    const snapshot = await getDocs(q);
+                //     const leadTypeCollection = collection(db, "page_tb");
+                //     const q = query(leadTypeCollection, where("page_url", "==", city));
+                //     const snapshot = await getDocs(q);
 
-                    console.log("Firestore snapshot size:", snapshot.size);
+                //     console.log("Firestore snapshot size:", snapshot.size);
 
-                    const dibsip = snapshot.docs.map((doc) => {
-                        const data = doc.data();
-                        console.log("Document data:", data);
-                        return data;
-                    });
+                //     const dibsip = snapshot.docs.map((doc) => {
+                //         const data = doc.data();
+                //         console.log("Document data:", data);
+                //         return data;
+                //     });
 
-                    subServicesData=dibsip;
+                //     subServicesData=dibsip;
                     
-                }
+                // }
 
              
                 
@@ -133,25 +133,28 @@ const route = segments[segments.length - 1] || '';
     setCatService(catservice);
 }, [page_url, route]);
 
-    console.log(catservice)
+    console.log(city)
     // const servicename="ro-water-purifier";
     useEffect(() => {
         const fetchData = async () => {
             try {
 
-
+      
                 // Fetch 1: All related services (like first PHP block)
                 const allPagesQuery = query(
-                    collection(db, 'landing_page'),
-                    where('brand', '==', brand),
-                    where('location', '==', 'India')
+                    collection(db, 'page_tb'),
+                    where('brand', '==', common),
+                    where('location', '==', 'India'),
+                    // where('page_url','==',city)
 
                 );
                 const allPagesSnap = await getDocs(allPagesQuery);
                 const allPagesData = allPagesSnap.docs.map(doc => doc.data());
                 setAllPages(allPagesData);
 
-        
+               console.log(allPagesData+'singlee page urls services');
+               
+
 
 
                 // Fetch 2: Popular cities services (like second PHP block)
@@ -184,7 +187,7 @@ const route = segments[segments.length - 1] || '';
                     const brandwisePagesData = brandwisePagesSnap.docs.map(doc => doc.data());
                     setBrandwisePages(brandwisePagesData);
                 }
-
+           
 
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -536,4 +539,4 @@ const route = segments[segments.length - 1] || '';
 
 };
 
-export default City;
+export default SingleService;

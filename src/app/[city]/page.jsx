@@ -1,18 +1,19 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
-import City from "../components/pages/city/City";
+// import City from "../components/pages/city/City";
+import SingleService from "../components/pages/singleservice/page";
 
    export async function generateMetadata({ params }) {
     const city  = params.city; 
-    console.log(city);
+    console.log(city+'fsffsfafafs');
     
    const canonicalPath = `/${city}`;
     console.log("Server Slug from URL:", city); // ✅ Now will print correctly
-
+// ac-installation
     // // Example Firebase query (optional):
     const q = query(
         collection(db, "page_tb"),
-        where("page_url", "==", city)
+        where("page_url", "==", city.toLowerCase())
     );
 
     const querySnapshot = await getDocs(q);
@@ -39,6 +40,6 @@ export default function Page({ params }) {
     const { city } = params;
 
     return (
-        <City city={city} />  // pass the city to City.jsx
+        <SingleService city={city} />  
     );
 }
