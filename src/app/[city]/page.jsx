@@ -1,13 +1,13 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
-import City from "../components/pages/city/City";
+import Acservices from "../components/pages/acservices/acservices";
 
    export async function generateMetadata({ params }) {
     const city  = params.city; 
-    console.log(city);
+    // console.log(city);
     
    const canonicalPath = `/${city}`;
-    console.log("Server Slug from URL:", city); // ✅ Now will print correctly
+    console.log("Server Slug from URL:", city); 
 
     // // Example Firebase query (optional):
     const q = query(
@@ -39,6 +39,6 @@ export default function Page({ params }) {
     const { city } = params;
 
     return (
-        <City city={city} />  // pass the city to City.jsx
+        <Acservices  />  // pass the city to City.jsx
     );
 }

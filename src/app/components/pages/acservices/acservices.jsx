@@ -13,7 +13,7 @@ import { db } from "@/app/firebaseconfig";
 import { usePathname, useSearchParams } from "next/navigation";
 
 
-const City = ({ city }) => {
+const Acservices = ({ city }) => {
     const [admin, setAdmin] = useState([]);
     const [error, setError] = useState(null);
     const [addedServices, setAddedServices] = useState([]);
@@ -27,16 +27,19 @@ const City = ({ city }) => {
     const [indiaShow, setIndiaShow] = useState(false);
     const [openItem, setOpenItem] = useState(0);
     const [catservice, setCatService] = useState([]);
-    const searchParams = useSearchParams();
+    const [relatedServices, setRelatedServices] = useState([]);
+  const [otherBrands, setOtherBrands] = useState([]);
+  const [allBrands, setAllBrands] = useState([]);
+  const [brandwiseLinks, setBrandwiseLinks] = useState([]);
     const pathname = usePathname();
     
     const segments = pathname.split('/').filter(Boolean); // removes empty segments
 const route = segments[segments.length - 1] || '';
 
-    // console.log("test" + JSON.stringify(cityData));
+    // console.log("test" + route);
     const indiaPages = indiaShow ? brandwisePages : brandwisePages.slice(0, 13);
 
-    const visiblePages = showAll ? popularCities : popularCities.slice(0, 14);
+    // const visiblePages = showAll ? popularCities : popularCities.slice(0, 14);
 
     useEffect(() => {
         const fetchSubServices = async () => {
@@ -44,7 +47,7 @@ const route = segments[segments.length - 1] || '';
 
                  let subServicesData = [];
 
-                const leadTypeCollection = collection(db, "landing_page");
+                const leadTypeCollection = collection(db, "page_tb");
                 const q = query(leadTypeCollection, where("page_url", "==", route));
                 const snapshot = await getDocs(q);
 
@@ -70,9 +73,6 @@ const route = segments[segments.length - 1] || '';
         fetchSubServices();
     }, []);
 
-
-
-    // console.log("test" + JSON.stringify(cityData));
     const servicedata = admin;
     const pageDetail = servicedata?.[0] || {};
 
@@ -96,61 +96,103 @@ const route = segments[segments.length - 1] || '';
     setCatService(catservice);
 }, [page_url, route]);
 
-    console.log(catservice)
-    // const servicename="ro-water-purifier";
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const allPagesQuery = query(
-                    collection(db, 'landing_page'),
-                    where('brand', '==', brand),
-                    where('location', '==', 'India')
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      // Related Services in India
+                const relatedServicesQuery = query(
+            collection(db, "page_tb"),
+            where("brand", "==", brand),
+            where("location", "==", "India"),
+            where("category", "==", category)
+            );
+            const relatedSnapshot = await getDocs(relatedServicesQuery);
+            const relatedServices = relatedSnapshot.docs.map(doc => doc.data());
 
+      setRelatedServices(relatedServices);
+
+      // Other Brands in Location
+      if (brand !== "Common") {
+        const otherBrandsQuery = query(
+            collection(db, "page_tb"),
+            where("service_type", "==", service_type),
+            where("location", "==", location),
+            where("brand", "!=", brand),
+            where("category", "==", category)
+            );
+            const otherSnapshot = await getDocs(otherBrandsQuery);
+            const otherBrands = otherSnapshot.docs.map(doc => doc.data());
+
+        setOtherBrands(otherBrands);
+      }
+
+      // All Brands in Location
+      if (brand === "Common") {
+        const allBrandsQuery = query(
+            collection(db, "page_tb"),
+            where("service_type", "==", service_type),
+            where("location", "==", location),
+            where("category", "==", category)
+            );
+            const allBrandsSnapshot = await getDocs(allBrandsQuery);
+            const allBrands = allBrandsSnapshot.docs.map(doc => doc.data());
+
+        setAllBrands(allBrands);
+      }
+
+      // Popular Cities (other than India)
+      if (location !== "India") {
+        const stateQuery = query(
+            collection(db, "landing_page"),
+            where("location", "==", location)
+            );
+            const stateSnapshot = await getDocs(stateQuery);
+            const state = !stateSnapshot.empty ? stateSnapshot.docs[0].data().state : null;
+            let popularCities = [];
+            if(state){
+             const q = query(
+                collection(db, "page_tb"),
+                where("service_type", "==", service_type),
+                where("location", "==", location),
+                where("category", "==", category),
+                where("brand", "!=", brand) // equivalent of `brand != '$brand'`
                 );
-                const allPagesSnap = await getDocs(allPagesQuery);
-                const allPagesData = allPagesSnap.docs.map(doc => doc.data());
-                setAllPages(allPagesData);
-
-                // Fetch 2: Popular cities services (like second PHP block)
-                if (location !== "India") {
-                    const popularCitiesQuery = query(
-                        collection(db, 'landing_page'),
-                        where('service_type', '==', service_type),
-                        where('brand', '==', brand),
-                        where('state', '==', state),
-
-
-                        // Assuming 'state' is available in data
-                    );
-                    const popularCitiesSnap = await getDocs(popularCitiesQuery);
-                    const popularCitiesData = popularCitiesSnap.docs.map(doc => doc.data());
-                    setPopularCities(popularCitiesData);
-                }
-
-                // Fetch 3: All page links brandwise (like third PHP block)
-                if (location === "India") {
-                    const brandwisePagesQuery = query(
-                        collection(db, 'landing_page'),
-                        where('service_type', '==', service_type),
-                        where('brand', '==', brand),
-                        where('category', '==', category)
-
-                        // Exclude current page
-                    );
-                    const brandwisePagesSnap = await getDocs(brandwisePagesQuery);
-                    const brandwisePagesData = brandwisePagesSnap.docs.map(doc => doc.data());
-                    setBrandwisePages(brandwisePagesData);
-                }
-
-
-            } catch (error) {
-                console.error("Error fetching data:", error);
+            const popularCitiesSnapshot = await getDocs(q);
+            popularCities = popularCitiesSnapshot.docs.map(doc => doc.data());
             }
-        };
 
-        fetchData();
-    }, [brand, location, service_type, category, state, page_url]);
+        setPopularCities(popularCities);
+      }
 
+      // All Page Links for India Brandwise
+      if (location === "India") {
+        const brandwiseQuery = query(
+            collection(db, "page_tb"),
+            where("service_type", "==", service_type),
+            where("brand", "==", brand),
+            where("category", "==", category)
+            );
+            const brandwiseSnapshot = await getDocs(brandwiseQuery);
+            const brandwiseLinks = brandwiseSnapshot.docs
+            .map(doc => doc.data())
+            .filter(item => item.page_url !== page_url); // exclude current pageURL
+
+        setBrandwiseLinks(brandwiseLinks);
+      }
+    };
+
+    fetchData();
+  }, [brand, category, location, service_type, page_url]);
+
+   const renderLink = (item) => (
+    <li key={item.page_url}>
+      <a href={`/${item.page_url}`} target="_blank" rel="noopener noreferrer">
+        {item.brand === "Common"
+          ? item.page_url.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
+          : `${item.brand} ${item.category} ${item.service_type} ${item.location}`}
+      </a>
+    </li>
+  );
     useEffect(() => {
         const loadCartFromLocalStorage = () => {
             try {
@@ -407,87 +449,40 @@ const route = segments[segments.length - 1] || '';
 
 
             </div>
-            <div className="bg-white p-4">
-                <h3 className="mb-3 font-bold text-xl">
-                    All {brand === "Common" ? "RO" : brand} Related Service-
-                </h3>
-                <ul className="text-blue-600 flex items-start ">
-                    {allPages.map((page, idx) => (
-                        <li key={idx} className="bg-blue-300 rounded-2xl p-1.5">
-                            <a href={`${page.page_url}`} className="text-blue-600">
-                                <i className="fa fa-location"></i>&nbsp;&nbsp;
-                                {page.brand === "Common" ?
-                                    page.page_url.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()) :
-                                    `${page.brand} ${page.service_type}`}
-                                <i className="fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <div className="interlinking-accareindia">
+      <div>
+        <h3>All {brand === "Common" ? category : brand} Related Service-</h3>
+        <ul>{relatedServices.map(renderLink)}</ul>
+      </div>
 
-            {location !== "India" && (
-                <div className="bg-white p-4">
-                    <h3 className="mb-3 font-bold text-xl">
-                        {brand === "Common" ? "RO" : brand} Service in Popular Cities-
-                    </h3>
-                    <ul className="text-blue-600 flex  flex-wrap  gap-2 items-start">
-                        {visiblePages.map((page, idx) => (
-                            <li key={idx} className="bg-blue-300 rounded-2xl p-1.5">
-                                <a href={`${page.page_url}`} className="">
-                                    <i className="fa fa-location"></i>&nbsp;&nbsp;
-                                    {page.brand === "Common" ?
-                                        page.page_url.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()) :
-                                        `${page.category} ${page.service_type} ${page.location}`}
-                                    <i className="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                        ))}
+      {brand !== "Common" && (
+        <div>
+          <h3>Other Brands {category} Service in {location} -</h3>
+          <ul>{otherBrands.map(renderLink)}</ul>
+        </div>
+      )}
 
-                        {/* Show More Button */}
-                        {popularCities.length > 14 && (
-                            <button
-                                className=" bg-blue-300 rounded-xl px-4 py-2 hover:bg-blue-800 text-white"
-                                onClick={() => setShowAll(!showAll)}
-                            >
-                                {showAll ? "Show Less <<" : "Show More >>"}
-                            </button>
-                        )}
-                    </ul>
-                </div>
-            )}
+      {brand === "Common" && (
+        <div>
+          <h3>All Brands {category} Service in {location} -</h3>
+          <ul>{allBrands.map(renderLink)}</ul>
+        </div>
+      )}
 
-            {location === "India" && (
-                <div className="bg-white ">
-                    <h3 className="font-bold text-xl ml-3.5">
-                        {brand === "Common" ? `${category} ${service_type} In India` : `${brand} ${service_type} In India`}
-                    </h3>
-                    <div className="bg-white flex flex-wrap gap-3 px-2 py-2.5">
-                        {indiaPages.map((page, idx) => (
-                            <div className="mns   " key={idx}>
-                                <a href={`${page.page_url}`} className="bg-blue-300 rounded-xl p-2 hover:bg-blue-600 ">
-                                    <i className="fa fa-location">&nbsp;&nbsp;</i>
-                                    {brand === "Common" ?
-                                        page.page_url.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()) :
-                                        `${page.category} ${page.service_type} ${page.location}`}
-                                    <i className="fa fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        ))}
+      {location !== "India" && (
+        <div>
+          <h3>{brand === "Common" ? category : brand} Service in Popular Cities -</h3>
+          <ul>{popularCities.map(renderLink)}</ul>
+        </div>
+      )}
 
-                        {/* Show More Button */}
-                        {brandwisePages.length > 13 && (
-                            <button
-                                className=" bg-blue-300 rounded-xl px-4 py-2 hover:bg-blue-800 text-white"
-                                onClick={() => setIndiaShow(!indiaShow)}
-                            >
-                                {indiaShow ? "Show Less <<" : "Show More >>"}
-                            </button>
-                        )}
-                    </div>
-                </div>
-            )}
-
+      {location === "India" && (
+        <div>
+          <h3>{brand === "Common" ? `${category} ${service_type}` : `${brand} ${category} ${service_type}`} In India</h3>
+          <ul>{brandwiseLinks.map(renderLink)}</ul>
+        </div>
+      )}
+    </div>
 
 
 
@@ -497,4 +492,4 @@ const route = segments[segments.length - 1] || '';
 
 };
 
-export default City;
+export default Acservices;
