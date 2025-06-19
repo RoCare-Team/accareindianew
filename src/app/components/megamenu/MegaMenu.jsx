@@ -23,31 +23,31 @@ import PhoneVerification from '../PhoneVerification/PhoneVerification';
 import { useRouter } from 'next/navigation';
 
 const menuData = [
-    {
-        label: 'Air Conditioners',
-        href: '/air-conditioners',
-        children: [
-            {
-                heading: 'Top Ac Brands',
-                submenu: [
-                    { label: 'LG', href: '#' },
-                    { label: 'Lloyd', href: '#' },
-                    { label: 'Voltas', href: '#' },
-                    { label: 'Samsung', href: '#' },
-                    { label: 'Hitachi', href: '#' },
-                    { label: 'Carrier', href: '#' },
-                    { label: 'Daikin', href: '#' },
-                    { label: 'O General', href: '#' },
-                    { label: 'Blue Star', href: '#' },
-                    { label: 'Whirlpool', href: '#' },
-                    { label: 'Panasonic', href: '#' },
-                    { label: 'Onida', href: '#' },
-                    { label: 'Haier', href: '#' },
-                    { label: 'Godrej', href: '#' },
-                ],
-            },
-        ],
-    },
+    // {
+    //     label: 'Air Conditioners',
+    //     href: '/air-conditioners',
+    //     children: [
+    //         {
+    //             heading: 'Top Ac Brands',
+    //             submenu: [
+    //                 { label: 'LG', href: '#' },
+    //                 { label: 'Lloyd', href: '#' },
+    //                 { label: 'Voltas', href: '#' },
+    //                 { label: 'Samsung', href: '#' },
+    //                 { label: 'Hitachi', href: '#' },
+    //                 { label: 'Carrier', href: '#' },
+    //                 { label: 'Daikin', href: '#' },
+    //                 { label: 'O General', href: '#' },
+    //                 { label: 'Blue Star', href: '#' },
+    //                 { label: 'Whirlpool', href: '#' },
+    //                 { label: 'Panasonic', href: '#' },
+    //                 { label: 'Onida', href: '#' },
+    //                 { label: 'Haier', href: '#' },
+    //                 { label: 'Godrej', href: '#' },
+    //             ],
+    //         },
+    //     ],
+    // },
     {
         label: 'Spare Parts',
         href: '/spare-parts',
