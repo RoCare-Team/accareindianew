@@ -104,7 +104,8 @@ const route = segments[segments.length - 1] || '';
             collection(db, "page_tb"),
             where("brand", "==", brand),
             where("location", "==", "India"),
-            where("category", "==", category)
+            where("category", "==", category),
+            limit(20)
             );
             const relatedSnapshot = await getDocs(relatedServicesQuery);
             const relatedServices = relatedSnapshot.docs.map(doc => doc.data());
@@ -118,7 +119,8 @@ const route = segments[segments.length - 1] || '';
             where("service_type", "==", service_type),
             where("location", "==", location),
             where("brand", "!=", brand),
-            where("category", "==", category)
+            where("category", "==", category),
+            limit(20)
             );
             const otherSnapshot = await getDocs(otherBrandsQuery);
             const otherBrands = otherSnapshot.docs.map(doc => doc.data());
@@ -132,7 +134,8 @@ const route = segments[segments.length - 1] || '';
             collection(db, "page_tb"),
             where("service_type", "==", service_type),
             where("location", "==", location),
-            where("category", "==", category)
+            where("category", "==", category),
+            limit(20)
             );
             const allBrandsSnapshot = await getDocs(allBrandsQuery);
             const allBrands = allBrandsSnapshot.docs.map(doc => doc.data());
@@ -174,7 +177,8 @@ console.log( 'state' + popularCities);
             collection(db, "page_tb"),
             where("service_type", "==", service_type),
             where("brand", "==", brand),
-            where("category", "==", category)
+            where("category", "==", category),
+            limit(20)
             );
             const brandwiseSnapshot = await getDocs(brandwiseQuery);
             const brandwiseLinks = brandwiseSnapshot.docs

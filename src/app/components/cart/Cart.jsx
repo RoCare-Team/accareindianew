@@ -183,7 +183,7 @@ const Cart = ({ cartLoaded, cartLoadedToggle }) => {
         ) : (
           <>
             {cartDataArray?.map((service) => (
-              <div key={service.cart_id} className="max-h-90 overflow-x-auto">
+              <div key={service.cart_id} className="max-h-90 overflow-y-auto">
                 <p className="ml-2.5">{service.leadtype_name}</p>
 
                 {service.cart_dtls?.map((item, index) => (
