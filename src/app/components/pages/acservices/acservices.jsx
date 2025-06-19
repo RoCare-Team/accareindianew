@@ -8,7 +8,7 @@ import AllServicesList from "@/app/components/pages/Services/Services";
 import ServicesList from "@/app/components/service/fakelist";
 import HomeCareService from "../../servicesSection/homeCareService";
 import Cart from "../../cart/Cart";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
 import { usePathname, useSearchParams } from "next/navigation";
 
@@ -85,7 +85,7 @@ const route = segments[segments.length - 1] || '';
     const base = page_url || route;
 
     // Use regex to match up to "-service" and remove everything after it
-    const match = base.match(/^(.*?)-service/);
+    const match = base.match(/^(.*?)-/);
     
     if (match) {
         catservice = match[1]; // ro-water-purifier or ac
@@ -149,18 +149,22 @@ const route = segments[segments.length - 1] || '';
             const stateSnapshot = await getDocs(stateQuery);
             const state = !stateSnapshot.empty ? stateSnapshot.docs[0].data().state : null;
             let popularCities = [];
-            if(state){
-             const q = query(
-                collection(db, "page_tb"),
-                where("service_type", "==", service_type),
-                where("location", "==", location),
-                where("category", "==", category),
-                where("brand", "!=", brand) // equivalent of `brand != '$brand'`
-                );
-            const popularCitiesSnapshot = await getDocs(q);
+            
+            
+            if(state!=null){
+                
+              const brandwiseQuery = query(
+                        collection(db, "page_tb"),
+                        where("service_type", "==", service_type),
+                        where("brand", "==", brand),
+                        where("category", "==", category),
+                        where("state", "==", state),
+                        limit(20)
+                        );
+            const popularCitiesSnapshot = await getDocs(brandwiseQuery);
             popularCities = popularCitiesSnapshot.docs.map(doc => doc.data());
             }
-
+console.log( 'state' + popularCities);
         setPopularCities(popularCities);
       }
 
@@ -185,7 +189,7 @@ const route = segments[segments.length - 1] || '';
   }, [brand, category, location, service_type, page_url]);
 
    const renderLink = (item) => (
-    <li key={item.page_url}>
+    <li className="bg-blue-300 rounded-xl p-2" key={item.page_url}>
       <a href={`/${item.page_url}`} target="_blank" rel="noopener noreferrer">
         {item.brand === "Common"
           ? item.page_url.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
@@ -449,37 +453,37 @@ const route = segments[segments.length - 1] || '';
 
 
             </div>
-            <div className="interlinking-accareindia">
+            <div className="interlinking-accareindia px-4 mt-2">
       <div>
-        <h3>All {brand === "Common" ? category : brand} Related Service-</h3>
-        <ul>{relatedServices.map(renderLink)}</ul>
+        <h3 className="text-xl font-bold mb-1.5">All {brand === "Common" ? category : brand} Related Service-</h3>
+        <ul className="flex flex-wrap gap-2 items-start">{relatedServices.map(renderLink)}</ul>
       </div>
 
       {brand !== "Common" && (
-        <div>
-          <h3>Other Brands {category} Service in {location} -</h3>
-          <ul>{otherBrands.map(renderLink)}</ul>
+        <div className="">
+          <h3 className="text-xl font-bold mb-1.5">Other Brands {category} Service in {location} -</h3>
+          <ul className="flex flex-wrap gap-2 items-start" >{otherBrands.map(renderLink)}</ul>
         </div>
       )}
 
       {brand === "Common" && (
-        <div>
-          <h3>All Brands {category} Service in {location} -</h3>
-          <ul>{allBrands.map(renderLink)}</ul>
+        <div className="">
+          <h3 className="text-xl font-bold mb-1.5">All Brands {category} Service in {location} -</h3>
+          <ul className="flex flex-wrap gap-2 items-start">{allBrands.map(renderLink)}</ul>
         </div>
       )}
 
       {location !== "India" && (
         <div>
-          <h3>{brand === "Common" ? category : brand} Service in Popular Cities -</h3>
-          <ul>{popularCities.map(renderLink)}</ul>
+          <h3 className="text-xl font-bold mb-1.5">{brand === "Common" ? category : brand} Service in Popular Cities -</h3>
+          <ul className="flex flex-wrap gap-2 items-start">{popularCities.map(renderLink)}</ul>
         </div>
       )}
 
       {location === "India" && (
         <div>
-          <h3>{brand === "Common" ? `${category} ${service_type}` : `${brand} ${category} ${service_type}`} In India</h3>
-          <ul>{brandwiseLinks.map(renderLink)}</ul>
+          <h3 className="text-xl font-bold mb-1.5">{brand === "Common" ? `${category} ${service_type}` : `${brand} ${category} ${service_type}`} In India</h3>
+          <ul className="flex flex-wrap gap-2 items-start">{brandwiseLinks.map(renderLink)}</ul>
         </div>
       )}
     </div>
