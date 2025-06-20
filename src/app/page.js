@@ -319,9 +319,9 @@ const benefits = [
         <div className=" common-spacing herooBanner ">
           <div className='background'></div>
           <div className='hero-content '>
-            <h2 className='text-2xl md:text-5xl font-bold text-gray-800 mb-6'>
+            <h1 className='text-2xl md:text-5xl font-bold text-gray-800 mb-6'>
               <b>Expert AC Care, Delivered to Your Doorstep</b>
-            </h2>
+            </h1>
             <h5 className='text-gray-500 mb-8'>
               From fast repairs to thorough maintenance — we ensure your cooling never skips a beat.
             </h5>

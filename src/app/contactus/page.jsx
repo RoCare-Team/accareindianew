@@ -31,24 +31,24 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-purple-100 min-h-screen common-spacing ">
+    <div className="bg-blue-100 min-h-screen common-spacing ">
       <ToastContainer />
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
-          <h1 className="text-4xl font-bold text-purple-600 mb-6">Contact Us</h1>
+          <h1 className="text-4xl font-bold text-blue-600 mb-6">Contact Us</h1>
 
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left column - Contact Form */}
             <div className="md:w-1/2">
               <div className="bg-gray-100 inline-flex rounded-lg p-1 mb-6">
                 <button
-                  className={`px-4 py-2  contact-btn-style ${activeTab === 'contact' ? 'bg-purple-500 text-white' : 'text-gray-700'}`}
+                  className={`px-4 py-2  contact-btn-style ${activeTab === 'contact' ? 'bg-blue-500 text-white' : 'text-gray-700'}`}
                   onClick={() => setActiveTab('contact')}
                 >
                   Send Message
                 </button>
                 <button
-                  className={`px-4 py-2 contact-btn-style ${activeTab === 'info' ? 'bg-purple-500 text-white' : 'text-gray-700'}`}
+                  className={`px-4 py-2 contact-btn-style ${activeTab === 'info' ? 'bg-blue-500 text-white' : 'text-gray-700'}`}
                   onClick={() => setActiveTab('info')}
                 >
                   Contact Info
@@ -68,7 +68,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Your Name *"
                       required
-                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     /> */}
                     <TextField
                       className='w-full'
@@ -101,7 +101,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Phone Number *"
                       required
-                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     /> */}
                     <TextField
                       className='w-full'
@@ -126,7 +126,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Email Address *"
                       required
-                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     /> */}
                     <TextField
                       className='w-full'
@@ -160,7 +160,7 @@ export default function ContactPage() {
                       placeholder="Your Message *"
                       required
                       rows="5"
-                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                      className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     ></textarea> */}
                     <TextField
                       variant="outlined"
@@ -179,15 +179,15 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="bg-purple-500 hover:bg-purple-700 contact-btn-style text-white py-3 px-6 rounded-md transition-colors"
+                    className="bg-blue-500 hover:bg-blue-700 contact-btn-style text-white py-3 px-6 rounded-md transition-colors"
                   >
                     Send Message
                   </button>
                 </form>
               ) : (
-                <div className="bg-purple-50 p-6 rounded-lg contactStyle">
+                <div className="bg-blue-50 p-6 rounded-lg contactStyle">
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-purple-700 flex items-center">
+                    <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <LocationOn className="mr-2" />Head Office
                     </h4>
                     <p className="text-gray-700 ml-6">
@@ -196,22 +196,22 @@ export default function ContactPage() {
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-purple-700 flex items-center">
+                    <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <Phone className="mr-2" /> Business Phone Numbers
                     </h4>
-                    <p className="text-gray-700 ml-6" ><a href="tel:+91-9311587715" title='+91-9311587715'>+91-9311587715</a></p>
+                    <p className="text-gray-700 ml-6" ><a href="tel:+91-9266608882" title='+91-9266608882'>+91-9266608882</a></p>
                     {/* <p className="text-gray-700 ml-6">+91-92 6666 8507</p> */}
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-purple-700 flex items-center">
+                    <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <Email className="mr-2" />Email
                     </h4>
                     <p className="text-gray-700 ml-6"><a href="mailto:info@mrserviceexpert.com" title='mail to info@mrserviceexpert.com'>info@mrserviceexpert.com</a></p>
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-purple-700 flex items-center">
+                    <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <Language className="mr-2" /> Website
                     </h4>
                     <p className="text-gray-700 ml-6"><a href="https://www.mrserviceexpert.com/" target="_blank" rel="noopener noreferrer" title='www.mrserviceexpert.com'>www.mrserviceexpert.com</a> </p>
@@ -231,47 +231,47 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="bg-purple-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold text-purple-700 mb-4">Department Contacts</h3>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-blue-700 mb-4">Department Contacts</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 contactStyle">
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Service Query</span>
-                    <span className="text-gray-700"><a href="tel:+91-9311587715" title='+91-9311587715'>+91-9311587715</a></span>
+                    <span className="font-medium text-blue-600">Service Query</span>
+                    <span className="text-gray-700"><a href="tel:+91-9266608882" title='+91-9266608882'>+91-9266608882</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Complaints</span>
+                    <span className="font-medium text-blue-600">Complaints</span>
                     <span className="text-gray-700"><a href="tel:+91-965 498 9003" title='+91-965 498 9003'>+91-965 498 9003</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Sales & Marketing</span>
+                    <span className="font-medium text-blue-600">Sales & Marketing</span>
                     <span className="text-gray-700"><a href="tel:+91-954 038 4046" title='+91-954 038 4046'>+91-954 038 4046</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Admin Manager</span>
+                    <span className="font-medium text-blue-600">Admin Manager</span>
                     <span className="text-gray-700"><a href="tel:+91-991 129 5362" title='+91-991 129 5362'>+91-991 129 5362</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">VME Department</span>
+                    <span className="font-medium text-blue-600">VME Department</span>
                     <span className="text-gray-700"><a href="tel:+91-850 600 0169" title='+91-850 600 0169'>+91-850 600 0169</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">HR Department</span>
+                    <span className="font-medium text-blue-600">HR Department</span>
                     <span className="text-gray-700"><a href="tel:+91-7065050074" title='+91-7065050074'>+91-7065050074</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Managing Director</span>
+                    <span className="font-medium text-blue-600">Managing Director</span>
                     <span className="text-gray-700"><a href="tel:+91-706 502 1273" title='+91-706 502 1273'>+91-706 502 1273</a></span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="font-medium text-purple-600">Purchase</span>
+                    <span className="font-medium text-blue-600">Purchase</span>
                     <span className="text-gray-700"><a href="tel:+91-730 388 8097" title='+91-730 388 8097'>+91-730 388 8097</a></span>
                   </div>
                 </div>
