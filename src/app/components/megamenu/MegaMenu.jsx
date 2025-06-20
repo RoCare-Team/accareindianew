@@ -82,24 +82,24 @@ const menuData = [
             {
                 heading: 'Top AC Services',
                 submenu: [
-                    { label: 'Voltas', href: '#' },
-                    { label: 'Hitachi', href: '#' },
-                    { label: 'LG', href: '#' },
-                    { label: 'O General', href: '#' },
-                    { label: 'Daikin', href: '#' },
-                    { label: 'Blue Star', href: '#' },
-                    { label: 'Godrej', href: '#' },
-                    { label: 'Samsung', href: '#' },
-                    { label: 'Carrier', href: '#' },
-                    { label: 'Lloyd', href: '#' },
-                    { label: 'Panasonic', href: '#' },
-                    { label: 'Onida', href: '#' },
-                    { label: 'Portable', href: '#' },
-                    { label: 'Duct', href: '#' },
-                    { label: 'Central AC', href: '#' },
-                    { label: 'Smart AC', href: '#' },
-                    { label: 'Floor Mounted', href: '#' },
-                    { label: 'Solar Hybrid', href: '#' },
+                    { label: 'Voltas', href: 'voltas-ac-service' },
+                    { label: 'Hitachi', href: 'hitachi-ac-service' },
+                    { label: 'LG', href: 'lg-ac-service' },
+                    { label: 'O General', href: 'o-general-ac-service' },
+                    { label: 'Daikin', href: 'daikin-ac-service' },
+                    { label: 'Blue Star', href: 'blue-star-ac-service' },
+                    { label: 'Godrej', href: 'godrej-ac-service' },
+                    { label: 'Samsung', href: 'samsung-ac-service' },
+                    { label: 'Carrier', href: 'carrier-ac-service' },
+                    { label: 'Lloyd', href: 'lloyd-ac-service' },
+                    { label: 'Panasonic', href: 'panasonic-ac-service' },
+                    { label: 'Onida', href: 'onida-ac-service' },
+                    { label: 'Portable', href: 'portable-ac-service' },
+                    { label: 'Duct', href: 'duct-ac-service' },
+                    { label: 'Central AC', href: 'central-ac-service' },
+                    { label: 'Smart AC', href: 'smart-ac-service' },
+                    { label: 'Floor Mounted', href: 'floor-mounted-ac-service' },
+                    { label: 'Solar Hybrid', href: 'solar-hybrid-ac-service' },
                 ],
             },
         ]
@@ -118,7 +118,7 @@ function MegaMenu() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [user, setUser] = useState({ name: '', email: '' });
-    
+
     // Refs
     const userMenuRef = useRef(null);
     const mobileMenuRef = useRef(null);
@@ -135,7 +135,7 @@ function MegaMenu() {
         const token = localStorage.getItem("userToken");
         const name = localStorage.getItem("name");
         const email = localStorage.getItem("email");
-        
+
         setUser({ name: name || '', email: email || '' });
         setIsLoggedIn(!!token);
     };
@@ -200,7 +200,7 @@ function MegaMenu() {
         try {
             setIsUserMenuOpen(false);
             setIsMobileMenuOpen(false);
-            
+
             const userPhone = localStorage.getItem("userPhone");
             if (!userPhone) {
                 console.error("User phone not found");
@@ -267,7 +267,7 @@ function MegaMenu() {
                         <FontAwesomeIcon icon={faBook} className="mr-3 text-gray-600 w-4 h-4" />
                         <span className="text-sm text-gray-700">Bookings</span>
                     </div>
-                    
+
                     <div
                         className="px-4 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
                         onClick={handleSupportClick}
@@ -275,7 +275,7 @@ function MegaMenu() {
                         <FontAwesomeIcon icon={faHeadset} className="mr-3 text-gray-600 w-4 h-4" />
                         <span className="text-sm text-gray-700">Support</span>
                     </div>
-                    
+
                     <div
                         className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-red-600 flex items-center"
                         onClick={handleLogout}
@@ -342,11 +342,11 @@ function MegaMenu() {
                         </div>
 
                         <div className="cartLink relative bg-blue-50 rounded-full p-2 hover:bg-blue-200 ">
-                                       <a href="/checkout" title="Checkout">
-                                         <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: "24px", cursor: "pointer"  }}  className='text-blue-600' />
-                                       </a>
-                                       {/* {cartCount > 0 ? (<span className='cartCountStyle absolute '>{cartCount}</span>): (<></>)} */}
-                                     </div>
+                            <a href="/checkout" title="Checkout">
+                                <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: "24px", cursor: "pointer" }} className='text-blue-600' />
+                            </a>
+                            {/* {cartCount > 0 ? (<span className='cartCountStyle absolute '>{cartCount}</span>): (<></>)} */}
+                        </div>
 
 
                         {/* Phone Number */}
@@ -356,19 +356,19 @@ function MegaMenu() {
                                     src="/assets/images/Call (2).webp"
                                     alt="Call For Services"
                                     className="w-8 h-8 object-contain"
-                                    title="For calling contact +91 9311587715"
+                                    title="For calling contact +91 9266608882"
                                 />
                             </div>
                             <a
-                                href="tel:+91-9311587715"
+                                href="tel:+91-9266608882"
                                 className="text-gray-800 hover:text-white transition-colors font-medium"
                                 title="Call for services"
                             >
-                                +91-9311587715
+                                +91-9266608882
                             </a>
                         </div>
 
-                          
+
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -378,9 +378,9 @@ function MegaMenu() {
                             className="w-10 h-10 rounded-lg bg-gray-50 text-blue-600 hover:bg-gray-100 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500"
                             aria-label="Toggle mobile menu"
                         >
-                            <FontAwesomeIcon 
-                                icon={isMobileMenuOpen ? faTimes : faAlignJustify} 
-                                className="w-5 h-5" 
+                            <FontAwesomeIcon
+                                icon={isMobileMenuOpen ? faTimes : faAlignJustify}
+                                className="w-5 h-5"
                             />
                         </button>
 
@@ -405,21 +405,27 @@ function MegaMenu() {
                                 {/* Mobile User Menu */}
                                 <div className="px-4 pt-4">
                                     <UserMenu />
+                                    <div className='flex flex-col py-1.5 px-1'>
+                                        <span className='bg-gray-400 rounded-sm px-1  text-white font-bold mb-2'><Link href='/ro/ro-water-purifier'>Ro Service</Link></span>
+                                        <span className='bg-gray-400 rounded-sm px-1  text-white font-bold mb-2'><Link href='/ac-service'>AC Service</Link></span>
+                                        <span className='bg-gray-400 rounded-sm px-1  text-white font-bold mb-2'><Link href='/refrigerator-repair'>Refrigerator Service</Link></span>
+                                    </div>
+
                                 </div>
 
                                 {/* Mobile Phone */}
-                                <div className="px-4 pt-4 bg-blue-600 text-white border-t border-gray-200 mt-4">
+                                {/* <div className="px-4 pt-4 bg-blue-600 text-white border-t border-gray-200 mt-4">
                                     <a
-                                        href="tel:+91-9311587715"
+                                        href="tel:+91-9266608882"
                                         className="flex items-center gap-3 py-2 rounded px-2  text-white"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         <FontAwesomeIcon icon={faPhone} className="w-4 h-4" />
-                                        <span className="font-medium">+91-9311587715</span>
+                                        <span className="font-medium">+91-9266608882</span>
                                     </a>
-                                </div>
+                                </div> */}
 
-                        
+
 
                             </div>
                         )}
@@ -428,9 +434,9 @@ function MegaMenu() {
             </div>
 
             {/* Login Modal */}
-            <PhoneVerification 
-                setShowModal={setShowLoginModal} 
-                showModal={showLoginModal} 
+            <PhoneVerification
+                setShowModal={setShowLoginModal}
+                showModal={showLoginModal}
             />
         </>
     );

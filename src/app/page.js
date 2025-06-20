@@ -24,13 +24,13 @@ const Home = () => {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Mr Service Expert",
+    "name": "Ac Care India Service",
     "image": {
       "@type": "ImageObject",
-      "url": "https://www.mrserviceexpert.com/assets/images/serviceLogo.webp"
+      "url": "https://www.accareindia.com/assets/images/serviceLogo.webp"
     },
-    "url": "https://www.mrserviceexpert.com",
-    "telephone": "+91-9311587744",
+    "url": "https://www.accareindia.com",
+    "telephone": "+91-9266608882",
     "email": "info@mrserviceexpert.com",
     "address": {
       "@type": "PostalAddress",
@@ -67,12 +67,13 @@ const Home = () => {
       "name": "India"
     },
     "sameAs": [
-      "https://www.facebook.com/MrServiceExpert/",
-      "https://www.linkedin.com/company/mr-service-expert/",
-      "https://x.com/mrserviceexpert"
+      "https://www.instagram.com/accareindia/",
+      "https://www.linkedin.com/company/ac-care-india/",
+      "https://x.com/accareindia",
+      "https://www.facebook.com/ACCareIndia/"
     ],
     "priceRange": "₹399+",
-    "description": "Mr Service Expert is a trusted name in home appliance repair across India. We provide reliable services for RO purifiers, ACs, refrigerators, washing machines, geysers, and more.",
+    "description": "AC Care India Services is a trusted name in home appliance repair across India. We provide reliable services for RO purifiers, ACs, refrigerators, washing machines, geysers, and more.",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": 4.8,
@@ -104,12 +105,12 @@ const Home = () => {
         "name": "What home appliances do you service?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mr Service Expert offers repair, installation, and maintenance services for RO water purifiers, air conditioners, washing machines, and refrigerators."
+          "text": "AC Care India Services offers repair, installation, and maintenance services for RO water purifiers, air conditioners, washing machines, and refrigerators."
         }
       },
       {
         "@type": "Question",
-        "name": "How can I book a service with Mr Service Expert?",
+        "name": "How can I book a service with AC Care India Services?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "You can easily book a service by visiting our website at https://www.mrserviceexpert.com or by calling our customer care number."
@@ -120,7 +121,7 @@ const Home = () => {
         "name": "Do you provide doorstep service for RO water purifiers?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Mr Service Expert offers doorstep service for all types of RO water purifiers, including installation, filter replacement, and maintenance."
+          "text": "Yes, AC Care India Services offers doorstep service for all types of RO water purifiers, including installation, filter replacement, and maintenance."
         }
       },
       {
@@ -160,7 +161,7 @@ const Home = () => {
         "name": "Are your technicians verified?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all Mr Service Expert technicians are background-verified, trained, and experienced in appliance repair and servicing."
+          "text": "Yes, all AC Care India Services technicians are background-verified, trained, and experienced in appliance repair and servicing."
         }
       }
     ]
@@ -180,25 +181,25 @@ const Home = () => {
         "@type": "ListItem",
         "position": 2,
         "name": "RO Water Purifier",
-        "item": "https://www.mrserviceexpert.com/ro-water-purifier"
+        "item": "https://www.accareindia.com/ro-water-purifier"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "AC Service",
-        "item": "https://www.mrserviceexpert.com/ac"
+        "item": "https://www.accareindia.com/ac"
       },
       {
         "@type": "ListItem",
         "position": 4,
         "name": "Washing Machine Service",
-        "item": "https://www.mrserviceexpert.com/washing-machine-repair"
+        "item": "https://www.accareindia.com/washing-machine-repair"
       },
       {
         "@type": "ListItem",
         "position": 5,
         "name": "Refrigerator Service",
-        "item": "https://www.mrserviceexpert.com/refrigerator-repair"
+        "item": "https://www.accareindia.com/refrigerator-repair"
       }
     ]
   };
@@ -319,9 +320,9 @@ const benefits = [
         <div className=" common-spacing herooBanner ">
           <div className='background'></div>
           <div className='hero-content '>
-            <h2 className='text-2xl md:text-5xl font-bold text-gray-800 mb-6'>
+            <h1 className='text-2xl md:text-5xl font-bold text-gray-800 mb-6'>
               <b>Expert AC Care, Delivered to Your Doorstep</b>
-            </h2>
+            </h1>
             <h5 className='text-gray-500 mb-8'>
               From fast repairs to thorough maintenance — we ensure your cooling never skips a beat.
             </h5>
