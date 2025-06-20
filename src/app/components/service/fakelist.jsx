@@ -26,22 +26,7 @@ const [catservice,setCatService]=useState(null);
 
   // const cat=useParams();
 
-  useEffect(() => {
-          if (rip === "ro-water-purifier-service" || rip ==="ac-service" ) {
-              const catservice = rip.replace("-service", "");
-              setCatService(catservice);
-          } 
-           
-         
-          
-          else {
-              const catservice = rip;
-              setCatService(catservice);
-          }
-      }, [rip]);
-
-  console.log(catservice+"yeh url se pta chalgye kya services chalgyi aur lead kausne aayege");
-
+  
   // const cat="ro-water-purifier";
 //   const city="ro-water-purifier";
 //   const cate="ro-water-purifier";
@@ -110,7 +95,7 @@ useEffect(() => {
     lead_type = 5;
   } else if (catservice === "kitchen-chimney-repair" || cat === "kitchen-chimney-repair" || city === "kitchen-chimney-repair" || cate === "kitchen-chimney-repair") {
     lead_type = 10;
-  } else if (catservice === "refrigerator-repair" || cat === "refrigerator-repair" || city === "refrigerator-repair" || cate === "refrigerator-repair") {
+  } else if (catservice === "refrigerator" || cat === "refrigerator" || city === "refrigerator" || cate === "refrigerator-repair") {
     lead_type = 6;
   }
 

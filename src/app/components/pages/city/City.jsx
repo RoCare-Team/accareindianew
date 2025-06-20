@@ -233,7 +233,7 @@ const route = segments[segments.length - 1] || '';
                 </div>
                 <div className="lg:w-3/4 w-full ">
                     <div className="px-1 flex lg:flex-row flex-col justify-center">
-                        <div className=" md:w-3xl w-full px-2">
+                        <div className=" md:w-3xl w-full px-2 mt-2">
 
                             <div className=" desktopBanner mb-3.5 h-64 w-full rounded-2xl flex items-center justify-center cat-service-style">
 
