@@ -6,6 +6,15 @@ import ServiceSection from '../app/components/servicesSection/servicesSection';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faBriefcase, 
+  faBadgeCheck, 
+  faHeadset, 
+  faFaceSmile, 
+  faUserShield, 
+  faAward
+} from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
   const locationRef = useRef(null);
@@ -194,60 +203,97 @@ const Home = () => {
     ]
   };
 
-  const benfits = [
-    {
-      id: 1,
-      benfitsHeading: 'In Business',
-      benfitsTitles: '10+ Years',
-      benfitsIcons: '/assets/images/star.webp',
-    },
-    {
-      id: 2,
-      benfitsHeading: 'Satisfaction Guarantee',
-      benfitsTitles: '100%',
-      benfitsIcons: '/assets/images/star.webp',
-    },
-    {
-      id: 3,
-      benfitsHeading: 'Customer Support',
-      benfitsTitles: '24/7',
-      benfitsIcons: '/assets/images/star.webp',
-    },
-    {
-      id: 4,
-      benfitsHeading: 'Happy Customers',
-      benfitsTitles: '5000+',
-      benfitsIcons: '/assets/images/star.webp',
+const benefits = [
+  {
+    id: 1,
+    benfitsHeading: 'In Business',
+    benfitsTitles: '10+ Years',
+    benfitsIcons: faBriefcase, // Or 'fa-business-time' if available
+  },
+  {
+    id: 2,
+    benfitsHeading: 'Satisfaction Guarantee',
+    benfitsTitles: '100%',
+    benfitsIcons: faAward,
+  },
+  {
+    id: 3,
+    benfitsHeading: 'Customer Support',
+    benfitsTitles: '24/7',
+    benfitsIcons: faHeadset,
+  },
+  {
+    id: 4,
+    benfitsHeading: 'Happy Customers',
+    benfitsTitles: '5 lakh+',
+    benfitsIcons: faFaceSmile,
+  },
+  {
+    id: 5,
+    benfitsHeading: 'Professionals',
+    benfitsTitles: 'Licensed',
+    benfitsIcons:   faUserShield ,
+  }
+];
 
-    },
-    {
-      id: 5,
-      benfitsHeading: 'Professionals',
-      benfitsTitles: 'Licensed',
-      benfitsIcons: '/assets/images/star.webp',
-    }
-  ]
+  //   const findService = () => {
+
+  //     const location = locationRef.current?.value.trim();
+  //     const service = serviceRef.current?.value;
+
+  //     if (!service && !location) {
+  //       toast.error('Please choose  a location or  a service.');
+  //       return;
+  //     }
+  //  const serviceMap = {
+  //     "ro-water-purifier": "ro/ro-water-purifier",
+  //     "refrigerator-repair": "refrigerator-repair",
+  //     "ac": "ac-service",
+  //     // "washing-machine-repair": "washing-machine-repair",
+  //   };
+
+  //     let path = '';
+  //     if (location) path += `/${encodeURIComponent(location)}`;
+  //     if (service && serviceMap[service]) {
+  //     path += `/${serviceMap[service]}`;
+  //   }
+
+  //     console.log(path);
+
+  //     router.push(path);
+
+
+  //   };
   const findService = () => {
+  const location = locationRef.current?.value.trim(); // e.g., "madambakkam-chennai"
+  const service = serviceRef.current?.value; // e.g., "ro-water-purifier"
 
-    const location = locationRef.current?.value.trim();
-    const service = serviceRef.current?.value;
+  if (!service) {
+    toast.error('Please choose a service.');
+    return;
+  }
 
-    if (!service && !location) {
-      toast.error('Please choose  a location or  a service.');
-      return;
-    }
-
-
-    let path = '';
-    if (location) path += `/${encodeURIComponent(location)}`;
-    if (service) path += `/${encodeURIComponent(service)}`;
-
-    console.log(path);
-
-    router.push(path);
-
-
+  const serviceMap = {
+    "ro-water-purifier": "ro/ro-water-purifier-service",
+    "refrigerator-repair": "refrigerator-repair",
+    "ac": "ac-service"
+    // Add more as needed
   };
+
+  if (!serviceMap[service]) {
+    toast.error('Invalid service selected.');
+    return;
+  }
+
+  let path = `/${serviceMap[service]}`;
+
+  if (location) {
+    path += `-${encodeURIComponent(location)}`;
+  }
+
+  console.log("Generated Path:", path);
+  router.push(path);
+};
 
 
   return (
@@ -265,10 +311,10 @@ const Home = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-  <ToastContainer position="bottom-right" autoClose={3000}  />
+      <ToastContainer position="bottom-right" autoClose={3000} />
 
       <div className=' homeviewStyle'>
-        
+
         {/*=================hero section================================== */}
         <div className=" common-spacing herooBanner ">
           <div className='background'></div>
@@ -301,7 +347,7 @@ const Home = () => {
                   <option value={'ro-water-purifier'}>Ro Water Purifier</option>
                   <option value={'refrigerator-repair'}>Refrigerator</option>
                   <option value={'ac'}>Ac</option>
-                  <option value={'washing-machine-repair'}>Washing Machine</option>
+                  {/* <option value={'washing-machine-repair'}>Washing Machine</option> */}
                 </select>
               </div>
 
@@ -313,11 +359,9 @@ const Home = () => {
 
             </div>
 
-            <div className='flex items-center justify-start mb-8 gap-2.5 '>
-              <button className='rounded-md bg-blue-500 p-2 text-white  hover:bg-blue-600' >Book Now</button>
-
-              <p > <b> Call Us </b><a href="tel:+919266608882" style={{ color: 'black', textDecoration: 'none' }}>+91-9266608882</a></p>
-            </div>
+            {/* <div className='flex items-center justify-start mb-8 gap-2.5 '>
+             <a href="tel:+919266608882" style={{ color: 'black', textDecoration: 'none' }}> <button className='rounded-md bg-blue-500 p-2 text-white  hover:bg-blue-600' >Call Now : +919266608882</button></a>
+            </div> */}
           </div>
 
         </div>
@@ -339,7 +383,8 @@ const Home = () => {
                 {/* for the icons  */}
                 <div className='flex justify-center items-center view-card'>
                   <div className='w-full workImg flex justify-center items-center flex-col gap-2.5'>
-                    <img src={'/assets/images/star.webp'} alt='icon logo'></img>
+                    {/* <img src={'/assets/images/star.webp'} alt='icon logo'></img> */}
+                    <span className='text-3xl bg-blue-50 rounded-full p-1'>📖</span>
                     <h2 className='text-black text-center'>
                       <b> Book a Service</b>
                     </h2>
@@ -351,7 +396,7 @@ const Home = () => {
                 {/*card 2*/}
                 <div className='flex justify-center items-center view-card'>
                   <div className='w-full workImg flex justify-center items-center flex-col gap-2.5'>
-                    <img src={'/assets/images/star.webp'} alt='icon logo'></img>
+                      <span className='text-3xl bg-blue-50 rounded-full p-1'>👨🏻‍🏭</span>
                     <h2 className='text-black text-center'>
                       <b>Meet Your Pro</b>
                     </h2>
@@ -363,7 +408,7 @@ const Home = () => {
                 {/*Card 3 */}
                 <div className='flex justify-center items-center view-card'>
                   <div className='w-full workImg flex justify-center items-center flex-col gap-2.5'>
-                    <img src={'/assets/images/star.webp'} alt='icon logo'></img>
+                      <span className='text-3xl bg-blue-50 rounded-full p-1'>🎉</span>
                     <h2 className='text-black text-center'>
                       <b>Enjoy the Results</b>
                     </h2>
@@ -374,19 +419,18 @@ const Home = () => {
                 </div>
 
               </div>
-              <div className='flex items-center justify-center mt-6'>
-                <button className='rounded-md bg-blue-500 p-2 text-white hover:bg-blue-700 '>Get Started Now</button>
-              </div>
+              
             </div>
 
           </div>
         </div>
 
         <div className='flex flex-wrap  flex-row gap-4 viewss bg-gray-100 p-3 '>
-          {benfits.map((benfits) => (
+          {benefits.map((benfits) => (
             <div key={benfits.id} className='flex p-6  items-center '>
               <div className='w-full workImg flex   items-center flex-col gap-2.5'>
-                <img src={benfits.benfitsIcons} alt={benfits.benfitsTitles}></img>
+               
+                 <FontAwesomeIcon icon={benfits.benfitsIcons} className="text-xl text-blue-600 bg-blue-100 p-3 rounded-full" />
                 <h2 className='text-black text-center'>
                   <b>{benfits.benfitsTitles}</b>
                 </h2>

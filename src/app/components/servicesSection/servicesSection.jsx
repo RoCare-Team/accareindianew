@@ -14,8 +14,8 @@ function ServiceSection() {
     const careServices = [
         {
             id: 1,
-            serviceImg: '/assets/images/servicesImages/ac.png',
-            serviceHeading: 'Jet foam AC service (Window)',
+            serviceImg: '/assets/images/acCareImg.jpeg',
+            serviceHeading: ' AC service (Split)',
             servicePrice: '₹ 499/-',
             serviceInfo: 'Quick and reliable repair services for all your home needs.',
             // serviceList:[
@@ -23,59 +23,41 @@ function ServiceSection() {
             //     // for future purposes
             //     }
             // ],
-            serviceUrl: 'ac',
-            serviceReview:'3.5 K',
+            serviceUrl: 'ac-service',
+            serviceReview: '3.5 K',
         },
         {
             id: 2,
             serviceImg: '/assets/images/acCareCool.jpeg',
-            serviceHeading: 'Jet foam AC service (Window)',
-            servicePrice: '₹ 499/-',
-            serviceInfo: 'Quick and reliable repair services for all your home needs.',
-            // serviceList:[
-            //     {  
-            //     // for future purposes
-            //     }
-            // ],
-            serviceUrl: 'ac',
-            serviceReview:'3.5 K',
+            serviceHeading: 'RO Water Purifier Service',
+            servicePrice: '₹ 399/-',
+            serviceInfo: 'Expert RO servicing including filter change, deep cleaning, and performance check to ensure safe and healthy drinking water.',
+
+            serviceUrl: 'ro/ro-water-purifier-service',
+            serviceReview: '3.5 K',
         },
         {
             id: 3,
             serviceImg: '/assets/images/acCareImg.jpeg',
-            serviceHeading: 'Jet foam AC service (Window)',
-            servicePrice: '₹ 499/-',
-            serviceInfo: 'Quick and reliable repair services for all your home needs.',
-            // serviceList:[
-            //     {  
-            //     // for future purposes
-            //     }
-            // ],
-            serviceUrl: 'ac',
-            serviceReview:'3.5 K',
+            serviceHeading: 'Refrigerator Repair Service',
+            servicePrice: '₹ 399/-',
+            serviceInfo: 'Fast and professional repair service for single and double-door refrigerators to keep your food fresh and cool.',
+
+
+            serviceUrl: 'refrigerator-repair',
+            serviceReview: '3.5 K',
         },
         {
             id: 4,
-            serviceImg: '/assets/images/servicesImages/ac.png',
-            serviceHeading: 'Jet foam AC service (Window)',
+            serviceImg: '/assets/AC Banner/AC Banner 4.webp',
+            serviceHeading: 'AC service (Window)',
             servicePrice: '₹ 499/-',
             serviceInfo: 'Quick and reliable repair services for all your home needs.',
-            // serviceList:[
-            //     {  
-            //     // for future purposes
-            //     }
-            // ],
-            serviceUrl: 'ac',
-            serviceReview:'3.5 K',
+            serviceUrl: 'ac-service',
+            serviceReview: '3.5 K',
         },
-       
-    ]
 
-    // Toggle function to show/hide all services
-    // const toggleAllServices = (e) => {
-    //     e.preventDefault();
-    //     setShowAllServices(!showAllServices);
-    // };
+    ]
 
     return (
         <div className=" common-spacing">
@@ -84,7 +66,9 @@ function ServiceSection() {
             <h5 className="text-gray-600 text-center mb-5">We offer a comprehensive range of home services to keep your property in perfect condition. <br /> Choose the service you need or contact us for custom solutions.</h5>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 servicesHero">
                 {careServices.map((service) => (
-                    <div className="bg-white h-70 shadow-md rounded-xl hover:-translate-y-0.5  hover:shadow-blue-100" key={service.id}>
+                  
+                   <div className="bg-white h-auto shadow-md rounded-xl hover:-translate-y-0.5  hover:shadow-blue-100" key={service.id}>
+                     <a href={`/${service.serviceUrl}`} >
                         <div className="w-full">
                             <img src={service.serviceImg} className="h-38 w-full rounded-t-md  bg-gray-300 "></img>
                         </div>
@@ -99,18 +83,12 @@ function ServiceSection() {
                                 <span className="text-gray-500 text-xs md:text-sm">{service.servicePrice}</span>
                             </div>
                         </div>
-
+</a>
                     </div>
+                  
                 ))}
             </div>
-            <div className="text-center mt-4 mb-4 ">
-                <button
-                    className="text-white  view-btn-style font-medium px-4 py-2 border border-blue-300  hover:bg-blue-600 bg-blue-500 "
-                    // onClick={toggleAllServices}
-                >
-                    { "Explore Our Services"}
-                </button>
-            </div>
+
         </div>
     );
 }
