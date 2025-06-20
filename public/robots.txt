@@ -1,20 +1,10 @@
 User-agent: *
-Disallow: /popper/
-Disallow: /beli/
-Disallow: /includes/
+Disallow: /config/
 Disallow: /reqwest/
-Disallow: /private/
-Disallow: /track-order/
-Disallow: /logs/
-Disallow: /admin/
-Disallow: /cgi-bin/
 Disallow: /amp/
+Disallow: /includes/
+Disallow: /lazada.IM.im-msgbox/
 
-Disallow: /cart/
-Disallow: /cart-checkout/
-Disallow: /shop-saringan-udara/
-Disallow: /login/
-Disallow: /jual/
-Disallow: /index/
+# Sitemap location
+Sitemap: https://www.accareindia.com/sitemap.xml
 
-Sitemap: https://www.mrserviceexpert.com/sitemap.xml

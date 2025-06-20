@@ -1,13 +1,126 @@
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<sitemap>
-<loc>https://www.mrserviceexpert.com/sitemap/water-purifier.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://www.mrserviceexpert.com/sitemap/ac-service-pages.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://www.mrserviceexpert.com/sitemap/brandwise-ro-water-purifier-pages.xml</loc>
-</sitemap>
+<url>
+      <loc>https://www.accareindia.com/sitemap/ac-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/blue-star-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/carrier-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/daikin-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/hitachi-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/lg-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/lloyd-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/o-general-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/onida-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/panasonic-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/samsung-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/voltas-sitemap.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
 
-</sitemapindex>
+<url>
+      <loc>https://www.accareindia.com/central-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+
+<url>
+      <loc>https://www.accareindia.com/duct-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/floormounted-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/geothermal-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/godrej-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/haier-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/solar-hybrid-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/portable-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/smart-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/whirlpool-ac-service.php</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/refrigerator.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+<url>
+      <loc>https://www.accareindia.com/sitemap/product.xml</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+</url>
+</urlset>
