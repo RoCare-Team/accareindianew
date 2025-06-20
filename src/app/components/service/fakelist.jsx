@@ -26,7 +26,22 @@ const [catservice,setCatService]=useState(null);
 
   // const cat=useParams();
 
-  
+  useEffect(() => {
+          if (rip !='') {
+              const catservice = rip.replace("-", "");
+              setCatService(catservice);
+          } 
+           
+         
+          
+          else {
+              const catservice = rip;
+              setCatService(catservice);
+          }
+      }, [rip]);
+
+  console.log(catservice+"yeh url se pta chalgye kya services chalgyi aur lead kausne aayege");
+
   // const cat="ro-water-purifier";
 //   const city="ro-water-purifier";
 //   const cate="ro-water-purifier";
@@ -81,22 +96,12 @@ useEffect(() => {
   let lead_type = null;
 
   // Use catservice (processed URL) instead of raw parameters
-  if (catservice === "washing-machine-repair" || cat === "washing-machine-repair" || city === "washing-machine-repair" || cate === "washing-machine-repair") {
-    lead_type = 4;
-  } else if (catservice === "ac" || cat === "ac" || city === "ac" || cate === "ac") {
+  if (catservice === "ac") {
     lead_type = 2;
-  } else if (catservice === "ro-water-purifier" || cat === "ro-water-purifier" || city === "ro-water-purifier" || cate === "ro-water-purifier") {
-    lead_type = 1;
-  } else if (catservice === "microwav-repair" || cat === "microwav-repair" || city === "microwav-repair" || cate === "microwav-repair") {
-    lead_type = 9;
-  } else if (catservice === "vacuum-cleaner-repair" || cat === "vacuum-cleaner-repair" || city === "vacuum-cleaner-repair" || cate === "vacuum-cleaner-repair") {
-    lead_type = 11;
-  } else if (catservice === "geyser-repair" || cat === "geyser-repair" || city === "geyser-repair" || cate === "geyser-repair") {
-    lead_type = 5;
-  } else if (catservice === "kitchen-chimney-repair" || cat === "kitchen-chimney-repair" || city === "kitchen-chimney-repair" || cate === "kitchen-chimney-repair") {
-    lead_type = 10;
-  } else if (catservice === "refrigerator" || cat === "refrigerator" || city === "refrigerator" || cate === "refrigerator-repair") {
+  } else  if (catservice === "refrigerator") {
     lead_type = 6;
+  }else if(catservice === "ro"){
+    lead_type =1;
   }
 
   const cid = localStorage.getItem('customer_id');

@@ -41,7 +41,7 @@ const AllServices = ({cater,red}) => {
       lead_type = 4;
     } else if (cat === "ac" || city === "ac" || cate === "ac" || red === "ac") {
       lead_type = 2;
-    } else if (cat === "ro-water-purifier" || city === "ro-water-purifier" || cate === "ro-water-purifier" || red=== "ro-water-purifier") {
+    } else if (cat === "ro" || city === "ro-water-purifier" || cate === "ro-water-purifier" || red=== "ro") {
       lead_type = 1;
     } else if (cat === "microwav-repair" || city === "microwav-repair" || cate === "microwav-repair") {
       lead_type = 9;

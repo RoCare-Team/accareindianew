@@ -77,6 +77,7 @@ const route = segments[segments.length - 1] || '';
     const pageDetail = servicedata?.[0] || {};
 
     const { brand = '', location = '', service_type = '',page_description='', tier = '', category = '', show_num_flag = '', state = '', page_url = '', page_faq_que_one = '', page_faq_ans_five = '', page_faq_ans_four = '', page_faq_ans_one = '', page_faq_ans_three = '', page_faq_ans_two = '', page_faq_que_five = '', page_faq_que_four = '', page_faq_que_two = '', page_faq_que_three = '' } = pageDetail;
+console.log('page_url' + page_url);
 
     useEffect(() => {
     let catservice = "";
@@ -96,6 +97,7 @@ const route = segments[segments.length - 1] || '';
     setCatService(catservice);
 }, [page_url, route]);
 
+  console.log('url' + catservice);
   
   useEffect(() => {
     const fetchData = async () => {

@@ -85,7 +85,7 @@ const route = segments[segments.length - 1] || '';
     const base = page_url || route;
 
     // Use regex to match up to "-service" and remove everything after it
-    const match = base.match(/^(.*?)-service/);
+    const match = base.match(/^(.*?)-/);
     
     if (match) {
         catservice = match[1]; // ro-water-purifier or ac
