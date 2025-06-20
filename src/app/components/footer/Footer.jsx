@@ -7,15 +7,9 @@ const Footer = () => {
     <footer className="bg-black text-white py-10 px-6">
       {/* bg-gradient-to-r from-indigo-800 to-purple-900 */}
       <div className="flex flex-col gap-8">
-
-
-
-
-
-
-        {/* Kent RO Popular Cities */}
+        {/*  RO Popular Cities */}
         <div className="mb-2.5">
-          <h3 className="text-lg font-semibold mb-4">Service in Popular Cities</h3>
+          <h3 className="text-lg font-semibold mb-4"> Ro Service in Popular Cities</h3>
           <div className="flex flex-wrap gap-2">
             {["Gurgaon",
               "Delhi",
@@ -46,8 +40,8 @@ const Footer = () => {
               "Chandigarh"].map((item,index) => (
                 <a
                   key={index}
-                  title={`${item.toLowerCase().replace(/\s+/g, "-")} Services`}
-                  href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  title={`${item.toLowerCase().replace(/\s+/g, "-")} ro  Services`}
+                  href={`/ro/ro-water-purifier-service-${item.toLowerCase().replace(/\s+/g, "-")}`}
                   className=" text-white px-3 py-1  text-sm hover:text-yellow-300 transition"
                 >
                   {item}
@@ -55,7 +49,7 @@ const Footer = () => {
               ))}
           </div>
         </div>
-        {/* RO Service Popular Cities */}
+        {/* ac Service Popular Cities */}
         <div>
           <StateLinks />
         </div>
@@ -72,10 +66,10 @@ const Footer = () => {
           </div>
           <div className="flex space-x-3 socialLinks">
           {/* https://www.facebook.com/MrServiceExpert/  className="w-10 h-10"  */}
-          <a href="https://www.facebook.com/MrServiceExpert/" target='_blank' rel="noopener noreferrer" title="Facebook mr service expert" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/facebook logo.webp" alt="Facebook mr service expert"  title="Facebook mr service expert" height="auto" width={40} /></a>
-            <a href="https://twitter.com/mrserviceexper4/" target='_blank' rel="noopener noreferrer" title="twitter mr service expert" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/twitter logo.webp" alt="twitter mr service expert" title="twitter mr service expert"   height="auto" width={40} /></a>
-            {/* <a href="https://www.instagram.com/rocareindia/" target='_blank' rel="noopener noreferrer" title="Instagram mr service expert" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/insta.svg" alt="Instagram mr service expert" height="auto" width={40} /></a> */}
-            <a href="https://www.linkedin.com/company/mr-service-expert/" target='_blank' rel="noopener noreferrer" title="Linkedin mr service expert" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/linkedin logo.webp" alt="Linkedin mr service expert"  title="Linkedin mr service expert"  height="auto" width={40} /></a>
+          <a href="https://www.facebook.com/ACCareIndia/" target='_blank' rel="noopener noreferrer" title="Facebook Ac Care Service" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/facebook logo.webp" alt="Facebook Ac Care Service"  title="Facebook Ac Care Service" height="auto" width={40} /></a>
+            <a href="https://x.com/accareindia" target='_blank' rel="noopener noreferrer" title="twitter Ac Care Service" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/twitter logo.webp" alt="twitter Ac Care Service" title="twitter Ac Care Service"   height="auto" width={40} /></a>
+            <a href="https://www.instagram.com/accareindia/" target='_blank' rel="noopener noreferrer" title="Instagram Ac Care Service" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/insta.svg" alt="Instagram Ac Care Service" height="auto" width={40} /></a>
+            <a href="https://www.linkedin.com/company/ac-care-india/" target='_blank' rel="noopener noreferrer" title="Linkedin Ac Care Service" className="hover:text-yellow-400 transition text-xl"><img src="/assets/images/socialIcons/linkedin logo.webp" alt="Linkedin Ac Care Service"  title="Linkedin mr service expert"  height="auto" width={40} /></a>
           </div>
         </div>
 
