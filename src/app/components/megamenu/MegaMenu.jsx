@@ -307,7 +307,7 @@ function MegaMenu() {
                     {/* Logo */}
                     <Link href="/" title="Home Services" className="flex-shrink-0">
                         <img
-                            src="https://www.accareindia.com/images/logos/accareindia_logo.svg"
+                            src="/accareindia_logo.svg"
                             alt="AC Care India logo"
                             title="AC Care India"
                             className="h-12 w-auto"
