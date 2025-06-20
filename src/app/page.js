@@ -29,8 +29,8 @@ const Home = () => {
       "@type": "ImageObject",
       "url": "https://www.accareindia.com/assets/images/serviceLogo.webp"
     },
-    "url": "https://www.mrserviceexpert.com",
-    "telephone": "+91-9311587744",
+    "url": "https://www.accareindia.com",
+    "telephone": "+91-9266608882",
     "email": "info@mrserviceexpert.com",
     "address": {
       "@type": "PostalAddress",
@@ -67,9 +67,10 @@ const Home = () => {
       "name": "India"
     },
     "sameAs": [
-      "https://www.facebook.com/MrServiceExpert/",
-      "https://www.linkedin.com/company/mr-service-expert/",
-      "https://x.com/mrserviceexpert"
+      "https://www.instagram.com/accareindia/",
+      "https://www.linkedin.com/company/ac-care-india/",
+      "https://x.com/accareindia",
+      "https://www.facebook.com/ACCareIndia/"
     ],
     "priceRange": "₹399+",
     "description": "AC Care India Services is a trusted name in home appliance repair across India. We provide reliable services for RO purifiers, ACs, refrigerators, washing machines, geysers, and more.",
