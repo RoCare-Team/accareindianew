@@ -29,6 +29,10 @@ import Acservices from "../components/pages/acservices/acservices";
         };
     }
 
+     if (querySnapshot.empty) {
+       return notFound();
+     }
+
     return {
         title: "Default Title",
         description: "Default Description",
