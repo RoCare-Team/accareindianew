@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
 import Acservices from "../components/pages/acservices/acservices";
-
+import { notFound } from "next/navigation";
    export async function generateMetadata({ params }) {
     const city  = params.city; 
     // console.log(city);
