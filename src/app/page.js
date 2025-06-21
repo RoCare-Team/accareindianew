@@ -31,7 +31,7 @@ const Home = () => {
     },
     "url": "https://www.accareindia.com",
     "telephone": "+91-9266608882",
-    "email": "info@mrserviceexpert.com",
+    "email": "info@accareindia.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "8th Floor, Head Office, JMD MEGAPOLIS, Sector 48",
@@ -175,7 +175,7 @@ const Home = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.mrserviceexpert.com"
+        "item": "https://www.accareindia.com"
       },
       {
         "@type": "ListItem",
@@ -237,34 +237,6 @@ const benefits = [
   }
 ];
 
-  //   const findService = () => {
-
-  //     const location = locationRef.current?.value.trim();
-  //     const service = serviceRef.current?.value;
-
-  //     if (!service && !location) {
-  //       toast.error('Please choose  a location or  a service.');
-  //       return;
-  //     }
-  //  const serviceMap = {
-  //     "ro-water-purifier": "ro/ro-water-purifier",
-  //     "refrigerator-repair": "refrigerator-repair",
-  //     "ac": "ac-service",
-  //     // "washing-machine-repair": "washing-machine-repair",
-  //   };
-
-  //     let path = '';
-  //     if (location) path += `/${encodeURIComponent(location)}`;
-  //     if (service && serviceMap[service]) {
-  //     path += `/${serviceMap[service]}`;
-  //   }
-
-  //     console.log(path);
-
-  //     router.push(path);
-
-
-  //   };
   const findService = () => {
   const location = locationRef.current?.value.trim(); // e.g., "madambakkam-chennai"
   const service = serviceRef.current?.value; // e.g., "ro-water-purifier"

@@ -5,10 +5,10 @@ import City from "@/app/components/pages/city/City";
 
     export async function generateMetadata({ params }) {
     const city  = params.services; // gets 'ro-water-purifier-service-channagiri'
-   const canonicalPath = `/ro/${city}`;
-    console.log("Server Slug from URL:", city); // ✅ Now will print correctly
-
-    // // Example Firebase query (optional):
+   const canonicalPath = `https://www.accareindia.com/ro/${city}`;
+    
+ 
+ console.log("Server Slug from URL:", canonicalPath);
     const q = query(
         collection(db, "landing_page"),
         where("page_url", "==", city)

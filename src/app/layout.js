@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://www.accareindia.com/'),
+ 
   title: "Home Appliance Repair & Services | Ac Care India",
   description: "Expert repair and maintenance services for ACs, water purifiers, and home appliances. Book reliable technicians across India with Ac Care India.",
   keywords: "ac repair service,water purifier repair,home appliance repair,refrigerator repair service,washing machine repair,air conditioner maintenance,ro service near me,microwave oven repair,geyser installation service,appliance service center",

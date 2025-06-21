@@ -207,7 +207,7 @@ export default function ContactPage() {
                     <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <Email className="mr-2" />Email
                     </h4>
-                    <p className="text-gray-700 ml-6"><a href="mailto:info@mrserviceexpert.com" title='mail to info@mrserviceexpert.com'>info@mrserviceexpert.com</a></p>
+                    <p className="text-gray-700 ml-6"><a href="mailto:info@accareindia.com" title='mail to info@accareindia.com'>info@accareindia.com</a></p>
                   </div>
 
                   <div className="mb-6">
