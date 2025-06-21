@@ -214,7 +214,7 @@ export default function ContactPage() {
                     <h4 className="text-lg font-semibold text-blue-700 flex items-center">
                       <Language className="mr-2" /> Website
                     </h4>
-                    <p className="text-gray-700 ml-6"><a href="https://www.mrserviceexpert.com/" target="_blank" rel="noopener noreferrer" title='www.mrserviceexpert.com'>www.mrserviceexpert.com</a> </p>
+                    <p className="text-gray-700 ml-6"><a href="https://www.accareindia.com" target="_blank" rel="noopener noreferrer" title='www.accareindia.com'>www.accareindia.com</a> </p>
                   </div>
 
                 </div>
