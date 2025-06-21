@@ -384,7 +384,7 @@ const handleResendCode = async (method) => {
                   <input
                     key={index}
                     ref={el => otpInputRefs.current[index] = el}
-                    type="text"
+                    type="number"
                     maxLength="1"
                     className="w-12 h-12 text-center border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     value={digit}
