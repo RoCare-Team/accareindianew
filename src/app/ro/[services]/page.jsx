@@ -2,6 +2,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/firebaseconfig";
 import City from "@/app/components/pages/city/City";
+import { notFound } from "next/navigation";
 
     export async function generateMetadata({ params }) {
     const city  = params.services; // gets 'ro-water-purifier-service-channagiri'
@@ -27,6 +28,9 @@ import City from "@/app/components/pages/city/City";
     },
         };
     }
+ if (querySnapshot.empty) {
+   return notFound();
+ }
 
     return {
         title: "Default Title",
